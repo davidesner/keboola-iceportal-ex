@@ -84,7 +84,7 @@ public class Extractor {
 				results.addAll(propTypesWriter.writeAndRetrieveResuts(iceWs.getPropertyTypes()));
 
 				log.info("Getting languages...");
-				results.addAll(languagesWriter.writeAndRetrieveResuts(iceWs.getLanguages()));
+				results.addAll(languagesWriter.writeAndRetrieveResuts(iceWsWithouMtype.getLanguages()));
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -104,7 +104,7 @@ public class Extractor {
 			propertRoomTypesWriter.writeAllResults(PropertyRoomTypeWrapper.Builder.build(property.getIceID(),
 					iceWsWithouMtype.getRoomTypesForProperty(property.getMappedID())));
 		} catch (Exception e) {
-			log.warning("Failed to get property room types. "+e.getMessage());
+			log.warning("Failed to get property " + property.getIceID() + " room types. "+e.getMessage());
 		}
 	}
 
@@ -173,7 +173,7 @@ public class Extractor {
 	}
 
 	private static ManifestFile generateManifestFile(ResultFileMetadata result) throws KBCException {
-		return ManifestFile.Builder.buildDefaultFromResult(result).setIncrementalLoad(config.getIncremental()).build();
+		return ManifestFile.Builder.buildDefaultFromResult(result, null, config.getIncremental()).build();
 	}
 
 	private static void handleException(KBCException ex) {

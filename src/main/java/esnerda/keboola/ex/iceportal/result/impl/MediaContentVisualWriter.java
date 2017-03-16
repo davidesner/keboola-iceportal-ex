@@ -57,13 +57,13 @@ public class MediaContentVisualWriter implements IResultWriter<MediaContentVisua
 		imgVisualsWriter = new DefaultBeanResultWriter<ImageVisualWrapper>(code+"Images.csv", new String[]{"publicID"});
 		imgVisualsWriter.initWriter(path,ImageVisualWrapper.class);
 		//init roomTypes writer
-		roomTypesWriter = new DefaultBeanResultWriter<RoomTypesWrapper>(code+"ImgRoomTypes.csv", new String[]{"photoPubId"});
+		roomTypesWriter = new DefaultBeanResultWriter<RoomTypesWrapper>(code+"ImgRoomTypes.csv", new String[]{"photoPubId","code"});
 		roomTypesWriter.initWriter(path,RoomTypesWrapper.class);
 		//init imageTags writer
-		imageTagsWriter = new DefaultBeanResultWriter<ImageTagsWrapper>(code+"ImgTagsTypes.csv", new String[]{"photoPubId"});
+		imageTagsWriter = new DefaultBeanResultWriter<ImageTagsWrapper>(code+"ImgTagsTypes.csv", new String[]{"photoPubId","tag"});
 		imageTagsWriter.initWriter(path,ImageTagsWrapper.class);		
 		//init captionItemWriter writer
-		captionItemWriter = new DefaultBeanResultWriter<CaptionItemWrapper>(code+"CaptionItems.csv", new String[]{});
+		captionItemWriter = new DefaultBeanResultWriter<CaptionItemWrapper>(code+"CaptionItems.csv", new String[]{"captionId","lcid"});
 		captionItemWriter.initWriter(path,CaptionItemWrapper.class);		
 	}
 

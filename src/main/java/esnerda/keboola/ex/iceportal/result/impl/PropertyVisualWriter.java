@@ -56,7 +56,7 @@ public class PropertyVisualWriter implements IResultWriter<PropertyVisuals>{
 		pStatusWriter = new DefaultBeanResultWriter<BrochureRequest>("propertyStatus.csv",  new String[]{"iceID"});
 		pStatusWriter.initWriter(path, BrochureRequest.class);		
 		//init tags writer
-		pIceTagsWriter = new DefaultBeanResultWriter<IceTagsWrapper>("propertyIceTags.csv",  new String[]{"propIceId"});
+		pIceTagsWriter = new DefaultBeanResultWriter<IceTagsWrapper>("propertyIceTags.csv",  new String[]{"propIceId","tag"});
 		pIceTagsWriter.initWriter(path, IceTagsWrapper.class);		
 		//init desc writer
 		pDescWriter = new DefaultBeanResultWriter<PropertyDescriptionWrapper>("propertyDescription.csv",  new String[]{"propIceId"});
