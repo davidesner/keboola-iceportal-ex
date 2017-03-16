@@ -1,0 +1,2654 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.iceportal.com/service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://services.iceportal.com/service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://services.iceportal.com/service">
+      <s:element name="GetAllBrochureIDsV2">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllBrochureIDsV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllBrochureIDsV2Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IDinfo" type="tns:ArrayOfBrochureIDInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBrochureIDInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BrochureIDInfo" nillable="true" type="tns:BrochureIDInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureIDInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="modifiedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="contentModifiedDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ICEAuthHeader" type="tns:ICEAuthHeader" />
+      <s:complexType name="ICEAuthHeader">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Username" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Password" nillable="true" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetCategories">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCategoriesResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OTACategories" type="tns:ArrayOfCategories" />
+            <s:element minOccurs="0" maxOccurs="1" name="ICECategories" type="tns:ArrayOfICESubCategories" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCategories">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Categories" nillable="true" type="tns:Categories" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Categories">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfICESubCategories">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ICESubCategories" nillable="true" type="tns:ICESubCategories" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ICESubCategories">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="subCateogories" type="tns:ArrayOfSubCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSubCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SubCategory" nillable="true" type="tns:SubCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SubCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="iceCateogry" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllBrochureIDs">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllBrochureIDsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllBrochureIDsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IDs" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBrochureStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrochureStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetBrochureStatusResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Published" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LookupMappedID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchAccountID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchMType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchMappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LookupMappedIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupMappedIDResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MappingInfo" type="tns:LookupMappedIDInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupMappedIDInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ICEID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ICEAuthHeaderWithMType" type="tns:ICEAuthHeaderWithMType" />
+      <s:complexType name="ICEAuthHeaderWithMType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Username" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Password" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserMType" nillable="true" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetMappingInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMappingInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMappingInfoResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:MappingInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MappingInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="publishedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastModifiedOn" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowVideos" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowVRs" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowPictures" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowInfo" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowLocationLink" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowGeneralInfoLink" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowPDFLink" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowRateReservation" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowLang" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowEmailLink" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllMappings">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllMappingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllMappingsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:ArrayOfMappingInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMappingInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MappingInfo" nillable="true" type="tns:MappingInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SearchBrochures">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="region" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="videosExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VRsExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="photosExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="infoExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="generalInfoExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="locationInfoExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pdfExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rrExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pageSize" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pageNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchBrochuresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchBrochuresResult" type="tns:SearchBrochureInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchBrochureInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pageNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalPages" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochures" type="tns:ArrayOfSearchBrochure" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSearchBrochure">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SearchBrochure" nillable="true" type="tns:SearchBrochure" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SearchBrochure">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="videosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VRsExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="photosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="infoExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="generalInfoExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="locationInfoExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="pdfExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="rrExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="iframeExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="customcontentExist" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SearchBrochuresV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="region" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="videosExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HD360sExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="photosExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iFrameExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customContentExist" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pageSize" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pageNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchBrochuresV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchBrochuresV2Result" type="tns:SearchBrchureInfoV2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchBrchureInfoV2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="pageNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalPages" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochures" type="tns:ArrayOfSearchBrochureV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSearchBrochureV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SearchBrochureV2" nillable="true" type="tns:SearchBrochureV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SearchBrochureV2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="videosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HD360sExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="photosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="iFrameExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="customContentExist" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetNewBrochureIDsSince">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="datefrom" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewBrochureIDsSinceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetNewBrochureIDsSinceResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:ArrayOfBrochureInfos" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBrochureInfos">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BrochureInfos" nillable="true" type="tns:BrochureInfos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInfos">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetNewBrochures">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="datefrom" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateto" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewBrochuresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetNewBrochuresResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:ArrayOfBrochureInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBrochureInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BrochureInfo" nillable="true" type="tns:BrochureInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="videosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="photosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VirtualRealityExists" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VRsExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="iFrameExists" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="locationInfoExist" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetNewBrochuresSince">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="datefrom" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewBrochuresSinceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetNewBrochuresSinceResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:ArrayOfBrochureInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatedBrochuresSince">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="datefrom" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatedBrochuresSinceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUpdatedBrochuresSinceResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:ArrayOfUpdatedBrochureInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUpdatedBrochureInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UpdatedBrochureInfo" nillable="true" type="tns:UpdatedBrochureInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UpdatedBrochureInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="brochureID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="mappedID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="newProperty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="publishedStatusChanged" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="mappedIDChanged" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PropertyInfoChanged" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContentChanged" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUpdatedBrochureIDsSince">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="datefrom" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatedBrochureIDsSinceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUpdatedBrochureIDsSinceResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:ArrayOfUpdatedBrochureIDInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUpdatedBrochureIDInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UpdatedBrochureIDInfo" nillable="true" type="tns:UpdatedBrochureIDInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UpdatedBrochureIDInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUpdatedBrochureIDsSinceV1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="datefrom" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatedBrochureIDsSinceV1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUpdatedBrochureIDsSinceV1Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:ArrayOfUpdatedBrochureIDInfoV1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUpdatedBrochureIDInfoV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UpdatedBrochureIDInfoV1" nillable="true" type="tns:UpdatedBrochureIDInfoV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UpdatedBrochureIDInfoV1">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="mappedID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBrochure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrochureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetBrochureResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="brochure" type="tns:Brochure" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Brochure">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:BrochureRequest" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureInfo" type="tns:BrochureInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="content" type="tns:BrochureContent" />
+          <s:element minOccurs="0" maxOccurs="1" name="constraints" type="tns:BrochureConstraint" />
+          <s:element minOccurs="0" maxOccurs="1" name="information" type="tns:BrochureInformation" />
+          <s:element minOccurs="0" maxOccurs="1" name="location" type="tns:BrochureLocation" />
+          <s:element minOccurs="0" maxOccurs="1" name="resources" type="tns:BrochureResources" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureRequest">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="status" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="statusText" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureContent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pictures" type="tns:MediaContent" />
+          <s:element minOccurs="0" maxOccurs="1" name="vrealities" type="tns:MediaContent" />
+          <s:element minOccurs="0" maxOccurs="1" name="iFrame" type="tns:iFrameInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoList" type="tns:videosList" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MediaContent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="propertyMapUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="captions" type="tns:ArrayOfCaption" />
+          <s:element minOccurs="0" maxOccurs="1" name="categories" type="tns:ArrayOfCategory" />
+          <s:element minOccurs="0" maxOccurs="1" name="images" type="tns:ArrayOfBrochureImage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCaption">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Caption" nillable="true" type="tns:Caption" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Caption">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ordinal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumb" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSize" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="longCaption" type="tns:ArrayOfItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:Item" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Item">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="text" type="s:string" />
+        </s:sequence>
+        <s:attribute name="lcid" type="s:int" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Category">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ordinal" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MainCategory" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubCategory" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBrochureImage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BrochureImage" nillable="true" type="tns:BrochureImage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureImage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ordinal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumb" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSizeUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediagallaryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSize" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="modifiedDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="iFrameInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Caption" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="MediaLink" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="videosList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="mediagallaryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Videos" type="tns:ArrayOfVideoInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVideoInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="videoInfo" nillable="true" type="tns:videoInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="videoInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ordinal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="languageid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediagallaryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fastDirectURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="slowDirectURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureConstraint">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="showVideos" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showPictures" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showVirtualReality" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showRatesReservations" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showGeneralInfo" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showLocation" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showPDFLink" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showLang" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showEmailLink" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showHD360PropertyMap" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="showIframe" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="longDescription" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="shortDescription" type="tns:ArrayOfDescriptionItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="tns:ArrayOfItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDescriptionItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DescriptionItem" nillable="true" type="tns:DescriptionItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DescriptionItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="lcid" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="descriptionOne" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="descriptionTwo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureLocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="textContent" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="locationImageUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="locationImage" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureResources">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="locationPdfFile" type="tns:ArrayOfPDFFile" />
+          <s:element minOccurs="0" maxOccurs="1" name="cssFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="cssFileUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="logoFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="logoFileUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPDFFile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PDFFile" nillable="true" type="tns:PDFFile" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PDFFile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pdfFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdfFileUrl" type="s:string" />
+        </s:sequence>
+        <s:attribute name="lcid" type="s:int" use="required" />
+      </s:complexType>
+      <s:element name="GetBrochureV1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrochureV1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetBrochureV1Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="brochure" type="tns:BrochureV1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BrochureV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:BrochureRequest" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureInfo" type="tns:BrochureInfoV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="content" type="tns:BrochureContentV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="constraints" type="tns:BrochureConstraint" />
+          <s:element minOccurs="0" maxOccurs="1" name="information" type="tns:BrochureInformationV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="location" type="tns:BrochureLocationV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="resources" type="tns:BrochureResourcesV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInfoV1">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="videosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="photosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VirtualRealityExists" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VRsExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="iFrameExists" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="locationInfoExist" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="createdOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lastModifiedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureContentV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pictures" type="tns:MediaContentV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="vrealities" type="tns:MediaContentV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="iFrame" type="tns:iFrameInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoList" type="tns:videosListV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MediaContentV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="propertyMapUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="captions" type="tns:ArrayOfCaption" />
+          <s:element minOccurs="0" maxOccurs="1" name="categories" type="tns:ArrayOfCategory" />
+          <s:element minOccurs="0" maxOccurs="1" name="images" type="tns:ArrayOfBrochureImageV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBrochureImageV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BrochureImageV1" nillable="true" type="tns:BrochureImageV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureImageV1">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ordinal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbUrl" type="tns:thumbUrl" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumb" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSizeUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaLink" type="tns:mediaLink" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSize" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="modifiedDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="thumbUrl">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dimensions" type="tns:Dimensions" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Dimensions">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="height" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="width" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="mediaLink">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dimensions" type="tns:Dimensions" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="videosListV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videos" type="tns:ArrayOfVideoInfoV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVideoInfoV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="videoInfoV1" nillable="true" type="tns:videoInfoV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="videoInfoV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ordinal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="languageid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fastDirectURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="slowDirectURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInformationV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="longDescription" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="shortDescription" type="tns:ArrayOfDescriptionItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="tns:ArrayOfItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureLocationV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="textContent" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="locationImageUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="locationImage" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureResourcesV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="locationPdfFile" type="tns:ArrayOfPDFFileV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="cssFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="cssFileUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="logoFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="logoFileUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPDFFileV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PDFFileV1" nillable="true" type="tns:PDFFileV1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PDFFileV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pdfFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdfFileUrl" type="s:string" />
+        </s:sequence>
+        <s:attribute name="lcid" type="s:int" use="required" />
+      </s:complexType>
+      <s:element name="GetBrochureV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBrochureV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetBrochureV2Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="brochure" type="tns:BrochureV2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BrochureV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:BrochureRequest" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureInfo" type="tns:BrochureInfoV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="content" type="tns:BrochureContentV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="constraints" type="tns:BrochureConstraint" />
+          <s:element minOccurs="0" maxOccurs="1" name="information" type="tns:BrochureInformationV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="location" type="tns:BrochureLocationV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="resources" type="tns:BrochureResourcesV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInfoV2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="propertyType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="stateCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="countryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="longitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="videosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="photosExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VirtualRealityExists" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="VRsExist" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="iFrameExists" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="locationInfoExist" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="createdOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lastModifiedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureContentV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pictures" type="tns:MediaContentV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="vrealities" type="tns:MediaContentV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="iFrame" type="tns:iFrameInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoList" type="tns:videosListV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MediaContentV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="propertyMapUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="captions" type="tns:ArrayOfCaption" />
+          <s:element minOccurs="0" maxOccurs="1" name="categories" type="tns:ArrayOfCategory" />
+          <s:element minOccurs="0" maxOccurs="1" name="images" type="tns:ArrayOfBrochureImageV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBrochureImageV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BrochureImageV2" nillable="true" type="tns:BrochureImageV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureImageV2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ordinal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbUrl" type="tns:thumbUrl" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumb" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSizeUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaLink" type="tns:mediaLink" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSize" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="modifiedDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="videosListV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videos" type="tns:ArrayOfVideoInfoV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVideoInfoV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="videoInfoV2" nillable="true" type="tns:videoInfoV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="videoInfoV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ordinal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="languageid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fastDirectURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="slowDirectURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInformationV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="longDescription" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="shortDescription" type="tns:ArrayOfDescriptionItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="tns:ArrayOfItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureLocationV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="textContent" type="tns:ArrayOfItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="locationImageUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="locationImage" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureResourcesV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="locationPdfFile" type="tns:ArrayOfPDFFileV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="cssFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="cssFileUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="logoFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="logoFileUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPDFFileV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PDFFileV2" nillable="true" type="tns:PDFFileV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PDFFileV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pdfFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdfFileUrl" type="s:string" />
+        </s:sequence>
+        <s:attribute name="lcid" type="s:int" use="required" />
+      </s:complexType>
+      <s:element name="GetPropertyInfoV1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPropertyInfoV1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetPropertyInfoV1Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="brochure" type="tns:PropertyInfoV1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PropertyInfoV1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:BrochureRequest" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureInfo" type="tns:BrochureInfoForGetPropertyInfoV1" />
+          <s:element minOccurs="0" maxOccurs="1" name="constraints" type="tns:BrochureConstraint" />
+          <s:element minOccurs="0" maxOccurs="1" name="availableContent" type="tns:AvailableContent" />
+          <s:element minOccurs="0" maxOccurs="1" name="GDSCodes" type="tns:ArrayOfGDSCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInfoForGetPropertyInfoV1">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="propertyType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="state" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="stateCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="countryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="longitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="locationInfoExist" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="createdOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lastModifiedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AvailableContent">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Videos" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Photos" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HD360s" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="GeneralInfo" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Location" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PDFLink" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Iframe" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfGDSCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GDSCode" nillable="true" type="tns:GDSCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GDSCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Supplier" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChainCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDirectVideoLinks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectVideoLinksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDirectVideoLinksResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="brochure" type="tns:Brochure" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLanguages">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLanguagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetLanguagesResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="languages" type="tns:ArrayOfItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountries">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCountriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCountriesResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="country" type="tns:BrochureListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BrochureListItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ISOCode" type="s:string" />
+        </s:sequence>
+        <s:attribute name="id" type="s:int" use="required" />
+      </s:complexType>
+      <s:element name="GetRegions">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRegionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRegionsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="region" type="tns:BrochureListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CountryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetStatesResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="state" type="tns:BrochureListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPropertyTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPropertyTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetPropertyTypesResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="unbounded" name="type" type="tns:BrochureListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomTypesForProperty">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomTypesForPropertyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRoomTypesForPropertyResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomTypes" type="tns:ArrayOfRoomType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRoomType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="roomType" nillable="true" type="tns:roomType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="roomType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="roomTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="roomTypeDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="keywords" type="tns:keyword" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="keyword">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="keyword" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRoomTypesForImage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="publicID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomTypesForImageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRoomTypesForImageResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomTypeCodes" type="tns:roomTypeCodes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="roomTypeCodes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="roomTypeCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetImagesOfRoomType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="roomTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImagesOfRoomTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetImagesOfRoomTypeResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Images" type="tns:ArrayOfImage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfImage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Image" nillable="true" type="tns:Image" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Image">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="publicId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="mediaType" type="tns:MediaType" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MediaType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Video" />
+          <s:enumeration value="VirtualReality" />
+          <s:enumeration value="Photo" />
+          <s:enumeration value="PDF" />
+          <s:enumeration value="IFrame" />
+          <s:enumeration value="HD360" />
+          <s:enumeration value="VideoNG" />
+          <s:enumeration value="Tours360NG" />
+          <s:enumeration value="CustomContent" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetProperties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="publicationStatus" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="modifiedTypeOption" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sinceDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="propertyType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="includeSupplierInfo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPropertiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetPropertiesResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="tns:ArrayOfPropertyIDInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPropertyIDInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PropertyIDInfo" nillable="true" type="tns:PropertyIDInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PropertyIDInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="mappedID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="propertymodifiedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="contentModifiedDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="isPublished" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="supplierID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="supplierMappedID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVisuals">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="protocol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LinkType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PhotoSize" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVisualsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetVisualsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Property" type="tns:PropertyVisuals" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PropertyVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Request" type="tns:BrochureRequest" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyInfo" type="tns:BrochureInfoVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrecICETags" type="tns:PrecICETags" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyDescription" type="tns:PropertyDescription" />
+          <s:element minOccurs="0" maxOccurs="1" name="AvailableContent" type="tns:availableContent" />
+          <s:element minOccurs="0" maxOccurs="1" name="MediaGallery" type="tns:BrochureContentVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="Information" type="tns:BrochureInformationVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="tns:BrochureLocationVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="Resources" type="tns:BrochureResourcesVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInfoVisuals">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="propertyType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="stateCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="countryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="longitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="photos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HD360s" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iFrame" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="map" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RatesReservations" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralInfo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PDFLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="createdOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lastModifiedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PrecICETags">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tags" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PropertyDescription">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description250" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description500" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description1000" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="availableContent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Photos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Videos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HD360s" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Iframe" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralInfo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PDFLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RatesReservations" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailLink" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureContentVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Pictures" type="tns:MediaContentVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="HD360s" type="tns:MediaContentVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="IFrame" type="tns:iFrameInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="VideoList" type="tns:videosListVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MediaContentVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="propertyMapUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Captions" type="tns:ArrayOfCaptionForVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="Images" type="tns:ArrayOfPropertyImageVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCaptionForVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Caption" nillable="true" type="tns:CaptionForVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CaptionForVisuals">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ordinal" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MainCategory" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubCategory" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Thumb" type="tns:ArrayOfItemForVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullSize" type="tns:ArrayOfItemForVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="LongCaption" type="tns:ArrayOfItemForVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfItemForVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:ItemForVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemForVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="text" type="s:string" />
+        </s:sequence>
+        <s:attribute name="lcid" type="s:int" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfPropertyImageVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PropertyImageVisuals" nillable="true" type="tns:PropertyImageVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PropertyImageVisuals">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ordinal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThumbUrl" type="tns:thumbUrl" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumb" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSizeUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MediaLink" type="tns:mediaLink" />
+          <s:element minOccurs="0" maxOccurs="1" name="DirectLinks" type="tns:DirectLinks" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSize" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="modifiedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeCodes" type="tns:roomTypeCodes" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrecIceTags" type="tns:ImageTags" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DirectLinks">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dimensions" type="tns:Dimensions" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ImageTags">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tags" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="videosListVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Videos" type="tns:ArrayOfVideoInfoVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVideoInfoVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VideoInfoVisuals" nillable="true" type="tns:VideoInfoVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VideoInfoVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ordinal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="languageid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="_720p" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="_360p" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInformationVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="longDescription" type="tns:ArrayOfItemForVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="shortDescription" type="tns:ArrayOfDescriptionItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="tns:ArrayOfItemForVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureLocationVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="brochureUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="textContent" type="tns:ArrayOfItemForVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="locationImageUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="locationImage" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureResourcesVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="locationPdfFile" type="tns:ArrayOfPDFFileVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="cssFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="cssFileUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="logoFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="logoFileUrl" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPDFFileVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PDFFileVisuals" nillable="true" type="tns:PDFFileVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PDFFileVisuals">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pdfFile" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="pdfFileUrl" type="s:string" />
+        </s:sequence>
+        <s:attribute name="lcid" type="s:int" use="required" />
+      </s:complexType>
+      <s:element name="SearchBrochureInfo" nillable="true" type="tns:SearchBrochureInfo" />
+      <s:element name="SearchBrchureInfoV2" nillable="true" type="tns:SearchBrchureInfoV2" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllBrochureIDsV2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBrochureIDsV2" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrochureIDsV2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBrochureIDsV2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrochureIDsV2ICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrochureIDsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBrochureIDs" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrochureIDsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBrochureIDsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrochureIDsICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBrochureStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBrochureStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureStatusICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="LookupMappedIDSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupMappedID" />
+  </wsdl:message>
+  <wsdl:message name="LookupMappedIDSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupMappedIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupMappedIDICEAuthHeaderWithMType">
+    <wsdl:part name="ICEAuthHeaderWithMType" element="tns:ICEAuthHeaderWithMType" />
+  </wsdl:message>
+  <wsdl:message name="GetMappingInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMappingInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetMappingInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMappingInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMappingInfoICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMappingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllMappings" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMappingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllMappingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMappingsICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchBrochures" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchBrochuresResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresV2SoapIn">
+    <wsdl:part name="parameters" element="tns:SearchBrochuresV2" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresV2SoapOut">
+    <wsdl:part name="parameters" element="tns:SearchBrochuresV2Response" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresV2ICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochureIDsSinceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewBrochureIDsSince" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochureIDsSinceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewBrochureIDsSinceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochureIDsSinceICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochuresSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewBrochures" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochuresSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewBrochuresResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochuresICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochuresSinceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewBrochuresSince" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochuresSinceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewBrochuresSinceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNewBrochuresSinceICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochuresSinceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUpdatedBrochuresSince" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochuresSinceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUpdatedBrochuresSinceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochuresSinceICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochureIDsSinceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUpdatedBrochureIDsSince" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochureIDsSinceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUpdatedBrochureIDsSinceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochureIDsSinceICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochureIDsSinceV1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetUpdatedBrochureIDsSinceV1" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochureIDsSinceV1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetUpdatedBrochureIDsSinceV1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatedBrochureIDsSinceV1ICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBrochure" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBrochureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureV1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetBrochureV1" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureV1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetBrochureV1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureV1ICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureV2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetBrochureV2" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureV2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetBrochureV2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetBrochureV2ICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertyInfoV1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetPropertyInfoV1" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertyInfoV1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetPropertyInfoV1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertyInfoV1ICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectVideoLinksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDirectVideoLinks" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectVideoLinksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDirectVideoLinksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectVideoLinksICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetLanguagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLanguages" />
+  </wsdl:message>
+  <wsdl:message name="GetLanguagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLanguagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLanguagesICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCountries" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCountriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountriesICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRegions" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRegionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionsICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetStatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStates" />
+  </wsdl:message>
+  <wsdl:message name="GetStatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatesICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertyTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPropertyTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertyTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPropertyTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertyTypesICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForPropertySoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoomTypesForProperty" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForPropertySoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoomTypesForPropertyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForPropertyICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForImageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoomTypesForImage" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForImageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoomTypesForImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForImageICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetImagesOfRoomTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetImagesOfRoomType" />
+  </wsdl:message>
+  <wsdl:message name="GetImagesOfRoomTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetImagesOfRoomTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetImagesOfRoomTypeICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProperties" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPropertiesICEAuthHeaderWithMType">
+    <wsdl:part name="ICEAuthHeaderWithMType" element="tns:ICEAuthHeaderWithMType" />
+  </wsdl:message>
+  <wsdl:message name="GetVisualsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVisuals" />
+  </wsdl:message>
+  <wsdl:message name="GetVisualsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVisualsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVisualsICEAuthHeaderWithMType">
+    <wsdl:part name="ICEAuthHeaderWithMType" element="tns:ICEAuthHeaderWithMType" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresHttpGetIn">
+    <wsdl:part name="DID" type="s:string" />
+    <wsdl:part name="hotelName" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="country" type="s:string" />
+    <wsdl:part name="region" type="s:string" />
+    <wsdl:part name="type" type="s:string" />
+    <wsdl:part name="videosExist" type="s:string" />
+    <wsdl:part name="VRsExist" type="s:string" />
+    <wsdl:part name="photosExist" type="s:string" />
+    <wsdl:part name="infoExist" type="s:string" />
+    <wsdl:part name="generalInfoExist" type="s:string" />
+    <wsdl:part name="locationInfoExist" type="s:string" />
+    <wsdl:part name="pdfExist" type="s:string" />
+    <wsdl:part name="rrExist" type="s:string" />
+    <wsdl:part name="pageSize" type="s:string" />
+    <wsdl:part name="pageNumber" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresHttpGetOut">
+    <wsdl:part name="Body" element="tns:SearchBrochureInfo" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresV2HttpGetIn">
+    <wsdl:part name="DID" type="s:string" />
+    <wsdl:part name="hotelName" type="s:string" />
+    <wsdl:part name="city" type="s:string" />
+    <wsdl:part name="state" type="s:string" />
+    <wsdl:part name="country" type="s:string" />
+    <wsdl:part name="region" type="s:string" />
+    <wsdl:part name="type" type="s:string" />
+    <wsdl:part name="videosExist" type="s:string" />
+    <wsdl:part name="HD360sExist" type="s:string" />
+    <wsdl:part name="photosExist" type="s:string" />
+    <wsdl:part name="iFrameExist" type="s:string" />
+    <wsdl:part name="customContentExist" type="s:string" />
+    <wsdl:part name="pageSize" type="s:string" />
+    <wsdl:part name="pageNumber" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchBrochuresV2HttpGetOut">
+    <wsdl:part name="Body" element="tns:SearchBrchureInfoV2" />
+  </wsdl:message>
+  <wsdl:portType name="ICEWebServiceSoap">
+    <wsdl:operation name="GetAllBrochureIDsV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure IDs and PropertyInfoLastUpdated and ContentLastUpdated for the distrbutor</wsdl:documentation>
+      <wsdl:input message="tns:GetAllBrochureIDsV2SoapIn" />
+      <wsdl:output message="tns:GetAllBrochureIDsV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains ICE category ID, ICE Category name and OTA Category ID, OTA Category Name</wsdl:documentation>
+      <wsdl:input message="tns:GetCategoriesSoapIn" />
+      <wsdl:output message="tns:GetCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrochureIDs">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure IDs for the distrbutor</wsdl:documentation>
+      <wsdl:input message="tns:GetAllBrochureIDsSoapIn" />
+      <wsdl:output message="tns:GetAllBrochureIDsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure status (enabled/disabled)</wsdl:documentation>
+      <wsdl:input message="tns:GetBrochureStatusSoapIn" />
+      <wsdl:output message="tns:GetBrochureStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupMappedID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains ICEID from SearchAccountID and MappedID for UserAccountID</wsdl:documentation>
+      <wsdl:input message="tns:LookupMappedIDSoapIn" />
+      <wsdl:output message="tns:LookupMappedIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMappingInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure mapping parameters</wsdl:documentation>
+      <wsdl:input message="tns:GetMappingInfoSoapIn" />
+      <wsdl:output message="tns:GetMappingInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMappings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochures mapping parameters for the distributor</wsdl:documentation>
+      <wsdl:input message="tns:GetAllMappingsSoapIn" />
+      <wsdl:output message="tns:GetAllMappingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBrochures">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Searches for the brochures which match given criteria</wsdl:documentation>
+      <wsdl:input message="tns:SearchBrochuresSoapIn" />
+      <wsdl:output message="tns:SearchBrochuresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBrochuresV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Searches for the brochures which match given criteria</wsdl:documentation>
+      <wsdl:input message="tns:SearchBrochuresV2SoapIn" />
+      <wsdl:output message="tns:SearchBrochuresV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochureIDsSince">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure IDs that has been changed after specified date</wsdl:documentation>
+      <wsdl:input message="tns:GetNewBrochureIDsSinceSoapIn" />
+      <wsdl:output message="tns:GetNewBrochureIDsSinceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochures">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure IDs that has been changed during specified period</wsdl:documentation>
+      <wsdl:input message="tns:GetNewBrochuresSoapIn" />
+      <wsdl:output message="tns:GetNewBrochuresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochuresSince">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure IDs that has been changed after specified date</wsdl:documentation>
+      <wsdl:input message="tns:GetNewBrochuresSinceSoapIn" />
+      <wsdl:output message="tns:GetNewBrochuresSinceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochuresSince">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure IDs and other information that has been changed after specified date</wsdl:documentation>
+      <wsdl:input message="tns:GetUpdatedBrochuresSinceSoapIn" />
+      <wsdl:output message="tns:GetUpdatedBrochuresSinceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochureIDsSince">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure IDs that has been changed after specified date</wsdl:documentation>
+      <wsdl:input message="tns:GetUpdatedBrochureIDsSinceSoapIn" />
+      <wsdl:output message="tns:GetUpdatedBrochureIDsSinceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochureIDsSinceV1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure IDs that has been changed after specified date</wsdl:documentation>
+      <wsdl:input message="tns:GetUpdatedBrochureIDsSinceV1SoapIn" />
+      <wsdl:output message="tns:GetUpdatedBrochureIDsSinceV1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure content</wsdl:documentation>
+      <wsdl:input message="tns:GetBrochureSoapIn" />
+      <wsdl:output message="tns:GetBrochureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureV1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure content for GetBrochureV1 web service</wsdl:documentation>
+      <wsdl:input message="tns:GetBrochureV1SoapIn" />
+      <wsdl:output message="tns:GetBrochureV1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure content for GetBrochureV2 web service</wsdl:documentation>
+      <wsdl:input message="tns:GetBrochureV2SoapIn" />
+      <wsdl:output message="tns:GetBrochureV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyInfoV1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure information for GetPropertyInfoV1 web service</wsdl:documentation>
+      <wsdl:input message="tns:GetPropertyInfoV1SoapIn" />
+      <wsdl:output message="tns:GetPropertyInfoV1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectVideoLinks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure content with direct video links</wsdl:documentation>
+      <wsdl:input message="tns:GetDirectVideoLinksSoapIn" />
+      <wsdl:output message="tns:GetDirectVideoLinksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLanguages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains language list</wsdl:documentation>
+      <wsdl:input message="tns:GetLanguagesSoapIn" />
+      <wsdl:output message="tns:GetLanguagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains country list</wsdl:documentation>
+      <wsdl:input message="tns:GetCountriesSoapIn" />
+      <wsdl:output message="tns:GetCountriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains region list</wsdl:documentation>
+      <wsdl:input message="tns:GetRegionsSoapIn" />
+      <wsdl:output message="tns:GetRegionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStates">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains region list</wsdl:documentation>
+      <wsdl:input message="tns:GetStatesSoapIn" />
+      <wsdl:output message="tns:GetStatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyTypes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains package list</wsdl:documentation>
+      <wsdl:input message="tns:GetPropertyTypesSoapIn" />
+      <wsdl:output message="tns:GetPropertyTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForProperty">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains Room Type Parameters associated with a property</wsdl:documentation>
+      <wsdl:input message="tns:GetRoomTypesForPropertySoapIn" />
+      <wsdl:output message="tns:GetRoomTypesForPropertySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForImage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains Room Type Parameters associated with an image</wsdl:documentation>
+      <wsdl:input message="tns:GetRoomTypesForImageSoapIn" />
+      <wsdl:output message="tns:GetRoomTypesForImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImagesOfRoomType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains publicId's of images for specified property with specified roomTypeCode </wsdl:documentation>
+      <wsdl:input message="tns:GetImagesOfRoomTypeSoapIn" />
+      <wsdl:output message="tns:GetImagesOfRoomTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProperties">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochures for GetProperties Web Service Method</wsdl:documentation>
+      <wsdl:input message="tns:GetPropertiesSoapIn" />
+      <wsdl:output message="tns:GetPropertiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVisuals">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure content for GetVisuals web service</wsdl:documentation>
+      <wsdl:input message="tns:GetVisualsSoapIn" />
+      <wsdl:output message="tns:GetVisualsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ICEWebServiceHttpGet">
+    <wsdl:operation name="SearchBrochures">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Searches for the brochures which match given criteria</wsdl:documentation>
+      <wsdl:input message="tns:SearchBrochuresHttpGetIn" />
+      <wsdl:output message="tns:SearchBrochuresHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBrochuresV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Searches for the brochures which match given criteria</wsdl:documentation>
+      <wsdl:input message="tns:SearchBrochuresV2HttpGetIn" />
+      <wsdl:output message="tns:SearchBrochuresV2HttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ICEWebServiceSoap" type="tns:ICEWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllBrochureIDsV2">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetAllBrochureIDsV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllBrochureIDsV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCategoriesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrochureIDs">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetAllBrochureIDs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllBrochureIDsICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureStatus">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetBrochureStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBrochureStatusICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupMappedID">
+      <soap:operation soapAction="http://services.iceportal.com/service/LookupMappedID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LookupMappedIDICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMappingInfo">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetMappingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMappingInfoICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMappings">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetAllMappings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllMappingsICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBrochures">
+      <soap:operation soapAction="http://services.iceportal.com/service/SearchBrochures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBrochuresV2">
+      <soap:operation soapAction="http://services.iceportal.com/service/SearchBrochuresV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SearchBrochuresV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochureIDsSince">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetNewBrochureIDsSince" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetNewBrochureIDsSinceICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochures">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetNewBrochures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetNewBrochuresICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochuresSince">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetNewBrochuresSince" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetNewBrochuresSinceICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochuresSince">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetUpdatedBrochuresSince" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUpdatedBrochuresSinceICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochureIDsSince">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetUpdatedBrochureIDsSince" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUpdatedBrochureIDsSinceICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochureIDsSinceV1">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetUpdatedBrochureIDsSinceV1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUpdatedBrochureIDsSinceV1ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochure">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetBrochure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBrochureICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureV1">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetBrochureV1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBrochureV1ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureV2">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetBrochureV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBrochureV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyInfoV1">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetPropertyInfoV1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPropertyInfoV1ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectVideoLinks">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetDirectVideoLinks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDirectVideoLinksICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLanguages">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetLanguages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLanguagesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetCountries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCountriesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetRegions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRegionsICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStates">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetStates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetStatesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyTypes">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetPropertyTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPropertyTypesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForProperty">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForProperty" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRoomTypesForPropertyICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForImage">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRoomTypesForImageICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImagesOfRoomType">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetImagesOfRoomType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetImagesOfRoomTypeICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProperties">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetProperties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPropertiesICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisuals">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetVisuals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVisualsICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ICEWebServiceSoap12" type="tns:ICEWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllBrochureIDsV2">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetAllBrochureIDsV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllBrochureIDsV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCategoriesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrochureIDs">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetAllBrochureIDs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllBrochureIDsICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureStatus">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetBrochureStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBrochureStatusICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupMappedID">
+      <soap12:operation soapAction="http://services.iceportal.com/service/LookupMappedID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LookupMappedIDICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMappingInfo">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetMappingInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMappingInfoICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMappings">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetAllMappings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllMappingsICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBrochures">
+      <soap12:operation soapAction="http://services.iceportal.com/service/SearchBrochures" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBrochuresV2">
+      <soap12:operation soapAction="http://services.iceportal.com/service/SearchBrochuresV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SearchBrochuresV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochureIDsSince">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetNewBrochureIDsSince" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetNewBrochureIDsSinceICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochures">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetNewBrochures" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetNewBrochuresICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewBrochuresSince">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetNewBrochuresSince" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetNewBrochuresSinceICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochuresSince">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetUpdatedBrochuresSince" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUpdatedBrochuresSinceICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochureIDsSince">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetUpdatedBrochureIDsSince" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUpdatedBrochureIDsSinceICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatedBrochureIDsSinceV1">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetUpdatedBrochureIDsSinceV1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUpdatedBrochureIDsSinceV1ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochure">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetBrochure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBrochureICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureV1">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetBrochureV1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBrochureV1ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureV2">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetBrochureV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBrochureV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyInfoV1">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetPropertyInfoV1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPropertyInfoV1ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectVideoLinks">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetDirectVideoLinks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDirectVideoLinksICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLanguages">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetLanguages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLanguagesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountries">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetCountries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCountriesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegions">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetRegions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRegionsICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStates">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetStates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetStatesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPropertyTypes">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetPropertyTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPropertyTypesICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForProperty">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForProperty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRoomTypesForPropertyICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForImage">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRoomTypesForImageICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImagesOfRoomType">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetImagesOfRoomType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetImagesOfRoomTypeICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProperties">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetProperties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPropertiesICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisuals">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetVisuals" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVisualsICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ICEWebServiceHttpGet" type="tns:ICEWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="SearchBrochures">
+      <http:operation location="/SearchBrochures" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBrochuresV2">
+      <http:operation location="/SearchBrochuresV2" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ICEWebService">
+    <wsdl:port name="ICEWebServiceSoap" binding="tns:ICEWebServiceSoap">
+      <soap:address location="http://services.iceportal.com/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ICEWebServiceSoap12" binding="tns:ICEWebServiceSoap12">
+      <soap12:address location="http://services.iceportal.com/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ICEWebServiceHttpGet" binding="tns:ICEWebServiceHttpGet">
+      <http:address location="http://services.iceportal.com/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

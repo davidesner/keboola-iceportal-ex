@@ -1,0 +1,118 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "IcePortal extractor config",
+	"type": "object",
+	"properties": {
+		"userName": {
+			"title": "User Name",
+			"type": "string",
+			"description": "IcePortal user name"
+		},
+		"#password": {
+			"title": "Password",
+			"type": "string",
+			"description": "IcePortal password"
+		},
+		"userMtype": {
+			"title": "User MType",
+			"type": "string",
+			"description": "IcePortal password"
+		},
+		"propertyTypes": {
+			"type": "array",
+			"format": "checkbox",
+			"uniqueItems": true,
+			"items": {
+				"type": "number",
+				"propertyOrder": 2000,
+				"title": "Property types to download",
+				"description": "The specified path is a single file or a whole folder",
+				"enum": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9,
+					10,
+					11,
+					12,
+					13,
+					14,
+					15,
+					16,
+					17
+				],
+				"default": 0,
+				"options": {
+					"enum_titles": [
+						"All",
+						"Hotel",
+						"Ship",
+						"Destination",
+						"Real Estate",
+						"Vacation Rentals",
+						"Attractions",
+						"Other",
+						"Golf",
+						"Air",
+						"Car",
+						"Insurance",
+						"Tour",
+						"Rail",
+						"Excursion",
+						"Ferry",
+						"Package Option",
+						"District"
+					]
+				}
+			}
+		},
+		"incremental": {
+			"propertyOrder": 6000,
+			"title": "Storage upload mode",
+			"description": "Incremental upload will append data to existing tables. Full upload will replace the contents of target table.",
+			"type": "number",
+			"enum": [
+				0,
+				1
+			],
+			"default": 1,
+			"options": {
+				"enum_titles": [
+					"Full",
+					"Incremental"
+				]
+			}
+		},
+		"fullLoad": {
+			"propertyOrder": 6000,
+			"title": "Load all data",
+			"description": "Loads all time data, regardless of last run",
+			"type": "number",
+			"enum": [
+				0,
+				1
+			],
+			"default": 1,
+			"options": {
+				"enum_titles": [
+					"False",
+					"True"
+				]
+			}
+		}
+	},
+	"required": [
+		"userName",
+		"#password",
+		"userMtype",
+		"propertyTypes",
+		"incremental",
+		"fullLoad"
+	]
+}
