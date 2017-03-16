@@ -3,6 +3,7 @@ package esnerda.keboola.ex.iceportal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.iceportal.services.service.BrochureListItem;
 import com.iceportal.services.service.Item;
@@ -35,6 +36,7 @@ public class Extractor {
 	private static KBCConfigurationEnvHandler handler;
 	private static IcePortalConfigParameters config;
 	private static IcePortalWsService iceWs;
+	private static IcePortalWsService iceWsWithouMtype;
 	private static KBCLogger log;
 	
 	/* writers */
@@ -47,60 +49,79 @@ public class Extractor {
 	public static void main(String[] args) {
 		log = new DefaultLogger(Extractor.class);
 		List<ResultFileMetadata> results = new ArrayList<>();
-
-		try {
+		
 			initEnv(args);
 			initWriters();
 			LocalDate now = LocalDate.now();
-			IpLastState lastState = (IpLastState) handler.getStateFile();
-
+			IpLastState lastState = null;
+			try {
+				lastState = Optional.ofNullable((IpLastState) handler.getStateFile()).orElse(new IpLastState());
+			} catch (KBCException e1) {
+				handleException(e1);
+			}
+			String lastRunParam = config.getSinceString() != null ? config.getSinceString() :  config.getSinceString();
+			
 			try {
 				List<PropertyIDInfo> propertiesRes = iceWs.getProperties(config.getPubStatus().toString(),
-						config.getModType().toString(), config.getFullLoad() ? null : "2017-03-01"/*lastState.getLastRunString()*/, config.getPropertyTypesString(), "0");
+						config.getModType().toString(), lastRunParam, config.getPropertyTypesString(), "0");
 
+				log.info("Retrieving properties changed since last run.");
 				/* collect result */
 				results.addAll(propResultWriter.writeAndRetrieveResuts(propertiesRes));
-
+				log.info("Retrieving property visuals..");
 				for (PropertyIDInfo prop : propertiesRes) {
 					PropertyVisuals visuals = iceWs.getVisuals(prop.getMappedID(), DEF_PROTOCOL, config.getLinkType(),
 							null);
 					propVisualsWriter.writeResult(visuals);
-					propertRoomTypesWriter.writeAllResults(PropertyRoomTypeWrapper.Builder.build(prop.getIceID(),
-							iceWs.getRoomTypesForProperty(prop.getMappedID())));
+					tryGetRoomTypes(prop);
+					
 				}
 				// collect results
+				log.info("Collectiong results...");
 				results.addAll(propVisualsWriter.closeAndRetrieveMetadata());
-				
+
+				log.info("Getting propery types...");
 				results.addAll(propTypesWriter.writeAndRetrieveResuts(iceWs.getPropertyTypes()));
+
+				log.info("Getting languages...");
 				results.addAll(languagesWriter.writeAndRetrieveResuts(iceWs.getLanguages()));
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			finalize(results, new IpLastState(now));
+		
+			log.info("Finished sucessfully.");
+			
+		
+	}
 
-			saveResults(results);
-			
-			handler.writeStateFile(new IpLastState(now));
-			
-		} catch (KBCException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+	private static void tryGetRoomTypes(PropertyIDInfo property) {		
+		try {
+			//why is Mtype failing?
+			propertRoomTypesWriter.writeAllResults(PropertyRoomTypeWrapper.Builder.build(property.getIceID(),
+					iceWsWithouMtype.getRoomTypesForProperty(property.getMappedID())));
+		} catch (Exception e) {
+			log.warning("Failed to get property room types. "+e.getMessage());
 		}
 	}
 
-	private static void initEnv(String[] args) throws KBCException {
+	private static void initEnv(String[] args){
 		handler = initHandler(args, log);
 		config = (IcePortalConfigParameters) handler.getParameters();
 		try {
 			iceWs = new IcePortalWsService(log.getLogger(), new IceportalWsClient(new IceClientConfig(config.getUserName(), config.getPassword(), config.getUserMtype()),
 					log.getLogger(), config.isDebug()));
+			iceWsWithouMtype = new IcePortalWsService(log.getLogger(), new IceportalWsClient(new IceClientConfig(config.getUserName(), config.getPassword(), null), log.getLogger(), config.isDebug()));
+			
 		} catch (Exception e) {
-			throw new KBCException("Failed to init web service!", e.getMessage(), e);
+			handleException(new KBCException("Failed to init web service!", e.getMessage(), e, 1));
 		}		
 	}
 
-	private static void initWriters() throws KBCException {
+	private static void initWriters(){
 		try {
 			propResultWriter = new DefaultBeanResultWriter<>("property.csv", new String[]{"iceID"});
 			propResultWriter.initWriter(handler.getOutputTablesPath(), PropertyIDInfo.class);
@@ -117,7 +138,7 @@ public class Extractor {
 			propertRoomTypesWriter = new DefaultBeanResultWriter<PropertyRoomTypeWrapper>("propertyRoomTypes.csv", new String[]{"propIceId", "roomTypeCode"});
 			propertRoomTypesWriter.initWriter(handler.getOutputTablesPath(), PropertyRoomTypeWrapper.class);
 		} catch (Exception e) {
-			throw new KBCException("Failed to init writer!", e.getMessage(), e);
+			handleException(new KBCException("Failed to init writer!", e.getMessage(), e, 1));			
 		}
 	}
 
@@ -141,8 +162,24 @@ public class Extractor {
 		}
 	}
 
+	private static void finalize(List<ResultFileMetadata> results, IpLastState thisState) {
+		try {
+			saveResults(results);
+
+			handler.writeStateFile(thisState);
+		} catch (KBCException e) {
+			handleException(e);
+		}
+	}
+
 	private static ManifestFile generateManifestFile(ResultFileMetadata result) throws KBCException {
 		return ManifestFile.Builder.buildDefaultFromResult(result).setIncrementalLoad(config.getIncremental()).build();
+	}
+
+	private static void handleException(KBCException ex) {
+		if (ex.getSeverity()>0) {
+			System.exit(ex.getSeverity());
+		}
 	}
 
 }

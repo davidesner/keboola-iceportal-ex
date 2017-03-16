@@ -1,22 +1,29 @@
 {
-    "storage": {
-        "input": {
-            "tables": [],
-            "files": []
-        },
-        "output": {
-            "tables": [],
-            "files": []
-        }
-    },
-    "parameters":{
-  "userName": "test",
-  "#password": "tsts",
-  "userMtype": "123",
-  "propertyTypes": [0],
-  "incremental": 1,
-  "fullLoad": 0,
-  "debug": 1
-},
-    "image_parameters": []
+	"storage": {
+		"input": {
+			"tables": [
+			],
+			"files": [
+			]
+		},
+		"output": {
+			"tables": [
+			],
+			"files": [
+			]
+		}
+	},
+	"parameters": {
+		"userName": "user",
+		"#password": "pass",
+		"userMtype": "12345",
+		"propertyTypes": [
+			0
+		],
+		"incremental": 1,
+		"pubStatus": 1,
+		"since": "2017-03-16"
+	},
+	"image_parameters": [
+	]
 }

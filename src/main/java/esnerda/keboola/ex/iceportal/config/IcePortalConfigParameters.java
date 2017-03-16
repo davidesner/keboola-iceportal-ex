@@ -1,5 +1,7 @@
 package esnerda.keboola.ex.iceportal.config;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import esnerda.keboola.components.configuration.IKBCParameters;
@@ -46,8 +49,9 @@ public class IcePortalConfigParameters extends IKBCParameters{
 	@JsonProperty("incremental")
 	private Boolean incremental;
 
-	@JsonProperty("fullLoad")
-	private Boolean fullLoad;
+	@JsonProperty("since")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private LocalDate since;
 	
 	@JsonProperty("datasets")
 	private List<String> datasets;
@@ -62,7 +66,7 @@ public class IcePortalConfigParameters extends IKBCParameters{
     public IcePortalConfigParameters(@JsonProperty("userName") String userName, @JsonProperty("#password") String password,
     		@JsonProperty("userMtype") String userMtype, @JsonProperty("pubStatus") Integer pubStatus, @JsonProperty("modType") Integer modType, 
     		@JsonProperty("propertyTypes") List<Integer> propertyTypes,	@JsonProperty("incremental") Boolean incremental, 
-    		@JsonProperty("fullLoad") Boolean fullLoad, @JsonProperty("datasets") List<String> datasets, @JsonProperty("linkType") String linkType, 
+    		@JsonProperty("since") LocalDate since, @JsonProperty("datasets") List<String> datasets, @JsonProperty("linkType") String linkType, 
     		@JsonProperty("debug") Boolean debug) {
 		
 		this.debug = Optional.ofNullable(debug).orElse(false);
@@ -74,7 +78,7 @@ public class IcePortalConfigParameters extends IKBCParameters{
 		this.linkType = Optional.ofNullable(linkType).orElse("DL");
 		this.propertyTypes = propertyTypes;
 		this.incremental = Optional.ofNullable(incremental).orElse(true);
-		this.fullLoad = Optional.ofNullable(fullLoad).orElse(false);
+		this.since = since;
 		this.datasets = datasets;
 
 		// set param map
@@ -215,7 +219,7 @@ public class IcePortalConfigParameters extends IKBCParameters{
 	}
 
 	public Integer getModType() {
-		if (fullLoad) {
+		if (since == null) {
 			return ModType.ALL.code;
 		}
 		return ModType.MODIFIED_SINCE.code;
@@ -229,8 +233,12 @@ public class IcePortalConfigParameters extends IKBCParameters{
 		return incremental;
 	}
 
-	public Boolean getFullLoad() {
-		return fullLoad;
+	public LocalDate getSince() {
+		return since;
+	}
+
+	public String getSinceString() {
+		return since.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
 
 	public List<String> getDatasets() {

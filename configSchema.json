@@ -89,22 +89,30 @@
 				]
 			}
 		},
-		"fullLoad": {
-			"propertyOrder": 6000,
-			"title": "Load all data",
-			"description": "Loads all time data, regardless of last run",
+		"pubStatus": {
+			"propertyOrder": 7000,
+			"title": "Publication status",
+			"description": "Publication status of retrieved properties.",
 			"type": "number",
 			"enum": [
 				0,
-				1
+				1,
+				2
 			],
 			"default": 1,
 			"options": {
 				"enum_titles": [
-					"False",
-					"True"
+					"All",
+					"Published",
+					"Unpublished"
 				]
 			}
+		},
+		"since": {
+			"propertyOrder": 8000,
+			"title": "Changed since",
+			"description": "Loads data changed since. Date in format yyyy-mm-dd",
+			"type": "string"
 		}
 	},
 	"required": [
@@ -113,6 +121,7 @@
 		"userMtype",
 		"propertyTypes",
 		"incremental",
-		"fullLoad"
+		"since",
+		"pubStatus"
 	]
 }

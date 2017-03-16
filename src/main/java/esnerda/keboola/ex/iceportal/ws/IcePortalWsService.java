@@ -62,7 +62,7 @@ public class IcePortalWsService {
 		Holder<String> errorMessage = new Holder<>();		
 		Holder<List<BrochureListItem>> types =   new Holder<>();
 		wsClient.getPropertyTypes(result, errorMessage, types);
-		if (!errorMessage.value.equals("OK")) {
+		if (errorMessage.value != null && !errorMessage.value.equals("OK")) {
 			throw new Exception("Error sending getPropertyTypes request. Message: " + errorMessage.value);
 		}
 		return types.value;		
@@ -91,7 +91,7 @@ public class IcePortalWsService {
 		Holder<String> errorMessage = new Holder<>();
 		Holder<ArrayOfItem> languages = new Holder<>();
 		wsClient.getLanguages(result, errorMessage, languages);
-		if (!errorMessage.value.equals("OK")) {
+		if (errorMessage.value != null && !errorMessage.value.equals("OK")) {
 			throw new Exception("Error sending getLanguages request. Message: " + errorMessage.value);
 		}
 		return languages.value.getItem();

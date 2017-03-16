@@ -133,6 +133,12 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 	}
 
 	@Override
+	public void getLanguages(Holder<Integer> getLanguagesResult, Holder<String> errorMessage,
+			Holder<ArrayOfItem> languages) {
+		iceWsClient.getLanguages(getLanguagesResult, errorMessage, languages);
+	}
+
+	@Override
 	public void getRoomTypesForImage(int publicID, Holder<Integer> getRoomTypesForImageResult,
 			Holder<String> errorMessage, Holder<RoomTypeCodes> roomTypeCodes) {
 		// TODO Auto-generated method stub
@@ -187,13 +193,6 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 	@Override
 	public void lookupMappedID(String searchAccountID, String searchMType, String searchMappedID,
 			Holder<Integer> lookupMappedIDResult, Holder<String> errorMessage, Holder<LookupMappedIDInfo> mappingInfo) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void getLanguages(Holder<Integer> getLanguagesResult, Holder<String> errorMessage,
-			Holder<ArrayOfItem> languages) {
 		// TODO Auto-generated method stub
 
 	}
