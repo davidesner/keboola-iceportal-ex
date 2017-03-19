@@ -40,7 +40,7 @@ public class IcePortalWsService {
 		Holder<ArrayOfPropertyIDInfo> info = new Holder<>();
 		wsClient.getProperties(publicationStatus, modifiedTypeOption, sinceDate, propertyType, includeSupplierInfo,
 				result, error, info);
-		if (!error.value.equals("OK")) {
+		if (!error.value.equals("OK") && !error.value.equals("Since date time is not valid")) {
 			throw new Exception("Error sending getPropetries request. Message: " + error.value);
 		}
 		return info.value.getPropertyIDInfo();		
