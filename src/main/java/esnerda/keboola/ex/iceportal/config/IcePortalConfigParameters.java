@@ -238,6 +238,9 @@ public class IcePortalConfigParameters extends IKBCParameters{
 	}
 
 	public String getSinceString() {
+		if (since == null) {
+			return null;
+		}
 		return since.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
 
