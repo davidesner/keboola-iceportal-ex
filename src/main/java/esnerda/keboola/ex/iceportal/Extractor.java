@@ -3,9 +3,12 @@ package esnerda.keboola.ex.iceportal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.iceportal.services.service.BrochureListItem;
+import com.iceportal.services.service.Categories;
+import com.iceportal.services.service.ICESubCategories;
 import com.iceportal.services.service.Item;
 import com.iceportal.services.service.PropertyIDInfo;
 import com.iceportal.services.service.PropertyVisuals;
@@ -21,6 +24,7 @@ import esnerda.keboola.components.result.ResultFileMetadata;
 import esnerda.keboola.components.result.impl.DefaultBeanResultWriter;
 import esnerda.keboola.ex.iceportal.config.IcePortalConfigParameters;
 import esnerda.keboola.ex.iceportal.config.IpLastState;
+import esnerda.keboola.ex.iceportal.result.impl.CategoriesWriter;
 import esnerda.keboola.ex.iceportal.result.impl.PropertyVisualWriter;
 import esnerda.keboola.ex.iceportal.result.wrappers.PropertyRoomTypeWrapper;
 import esnerda.keboola.ex.iceportal.ws.IceClientConfig;
@@ -45,6 +49,7 @@ public class Extractor {
 	private static IResultWriter<BrochureListItem> propTypesWriter;
 	private static IResultWriter<Item> languagesWriter;
 	private static IResultWriter<PropertyRoomTypeWrapper> propertRoomTypesWriter;
+	private static IResultWriter<Map<Categories, ICESubCategories>> categoriesWriter;
 
 	public static void main(String[] args) {
 		log = new DefaultLogger(Extractor.class);
@@ -85,10 +90,13 @@ public class Extractor {
 
 				log.info("Getting languages...");
 				results.addAll(languagesWriter.writeAndRetrieveResuts(iceWsWithouMtype.getLanguages()));
+
+				log.info("Getting categories...");
+				categoriesWriter.writeResult(iceWsWithouMtype.getCategories());
+				results.addAll(categoriesWriter.closeAndRetrieveMetadata());
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				handleException(new KBCException("", "Extraction failed. " + e.getMessage(), "", 1));
 			}
 			
 			finalize(results, new IpLastState(now));
@@ -137,6 +145,9 @@ public class Extractor {
 			
 			propertRoomTypesWriter = new DefaultBeanResultWriter<PropertyRoomTypeWrapper>("propertyRoomTypes.csv", new String[]{"propIceId", "roomTypeCode"});
 			propertRoomTypesWriter.initWriter(handler.getOutputTablesPath(), PropertyRoomTypeWrapper.class);
+
+			categoriesWriter = new CategoriesWriter();
+			categoriesWriter.initWriter(handler.getOutputTablesPath(),null);
 		} catch (Exception e) {
 			handleException(new KBCException("Failed to init writer!", e.getMessage(), e, 1));			
 		}
@@ -177,6 +188,7 @@ public class Extractor {
 	}
 
 	private static void handleException(KBCException ex) {
+		log.log(ex);
 		if (ex.getSeverity()>0) {
 			System.exit(ex.getSeverity());
 		}

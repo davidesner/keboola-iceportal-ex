@@ -139,6 +139,14 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 	}
 
 	@Override
+	public void getCategories(Holder<Integer> getCategoriesResult, Holder<String> errorMessage,
+			Holder<ArrayOfCategories> otaCategories, Holder<ArrayOfICESubCategories> iceCategories) {
+		iceWsClient.getCategories(getCategoriesResult, errorMessage, otaCategories, iceCategories);
+	}
+
+	//unimplemented
+
+	@Override
 	public void getRoomTypesForImage(int publicID, Holder<Integer> getRoomTypesForImageResult,
 			Holder<String> errorMessage, Holder<RoomTypeCodes> roomTypeCodes) {
 		// TODO Auto-generated method stub
@@ -307,13 +315,6 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 	@Override
 	public void getBrochureV2(String mappedID, Holder<Integer> getBrochureV2Result, Holder<String> errorMessage,
 			Holder<BrochureV2> brochure) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void getCategories(Holder<Integer> getCategoriesResult, Holder<String> errorMessage,
-			Holder<ArrayOfCategories> otaCategories, Holder<ArrayOfICESubCategories> iceCategories) {
 		// TODO Auto-generated method stub
 
 	}
