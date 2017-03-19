@@ -13,6 +13,12 @@ public class SubcategoryWrapper {
 	private int parentId;
 	protected int id;
 	protected String iceCateogry;
+	
+	
+
+	public SubcategoryWrapper() {
+		super();
+	}
 
 	public SubcategoryWrapper(int parentId, SubCategory sub) {
 		super();
@@ -43,5 +49,7 @@ public class SubcategoryWrapper {
 	public String getIceCateogry() {
 		return iceCateogry;
 	}
+
+
 
 }
