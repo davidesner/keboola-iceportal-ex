@@ -71,13 +71,13 @@ public abstract class AbstractBeanResultWriter<T> implements IResultWriter<T>, C
 
 	@Override
 	public void close() throws IOException {
+		writer.close();
 		if (bw != null) {
 			bw.close();
 		}
 		if (fw != null) {
 			fw.close();
-		}
-		writer.close();
+		}		
 	}
 
 	/* get cell processors with dynamic size */
