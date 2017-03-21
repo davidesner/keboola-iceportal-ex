@@ -70,10 +70,11 @@ public class Extractor {
 				: lastState.getLastRunString();
 
 		try {
+			log.info("Retrieving properties changed since last run.");
 			List<PropertyIDInfo> propertiesRes = iceWs.getProperties(config.getPubStatus().toString(),
 					config.getModType().toString(), lastRunParam, config.getPropertyTypesString(), "0");
 
-			log.info("Retrieving properties changed since last run.");
+			
 			/* collect result */
 			results.addAll(propResultWriter.writeAndRetrieveResuts(propertiesRes));
 			log.info("Retrieving property visuals..");
@@ -111,7 +112,7 @@ public class Extractor {
 			propVisualsWriter.writeResult(visuals);
 			tryGetRoomTypes(property);
 		} catch (Exception e) {
-			log.warning("Failed to get property " + property.getIceID() + " visuals. " + e.getMessage(), e);
+			log.warning("Failed to get property " + property.getIceID() + " visuals. " + e.getMessage(), null);
 		}
 	}
 

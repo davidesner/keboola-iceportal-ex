@@ -31,12 +31,16 @@ public abstract class AbstractBeanResultWriter<T> implements IResultWriter<T>, C
 	protected ICsvBeanWriter writer = null;
 	protected  CellProcessor[] cellProcessors;
 	protected String[] header;
+	protected BufferedWriter bw;
+	protected FileWriter fw;
 
 	@Override
 	public void initWriter(String path, Class<T> clazz) throws Exception {
 		initHeader(clazz.newInstance());
 		resFile = new File(path + File.separator + getFileName());
-		this.writer = new CsvBeanWriter(new BufferedWriter(new FileWriter(resFile)), CsvPreference.STANDARD_PREFERENCE);			
+		fw = new FileWriter(resFile);
+		bw = new BufferedWriter(fw);
+		this.writer = new CsvBeanWriter(bw, CsvPreference.STANDARD_PREFERENCE);			
 		cellProcessors = getProcessors(getHeader().length);
 		writer.writeHeader(getHeader());		
 	}
@@ -67,7 +71,13 @@ public abstract class AbstractBeanResultWriter<T> implements IResultWriter<T>, C
 
 	@Override
 	public void close() throws IOException {
-		writer.close();		
+		if (bw != null) {
+			bw.close();
+		}
+		if (fw != null) {
+			fw.close();
+		}
+		writer.close();
 	}
 
 	/* get cell processors with dynamic size */
