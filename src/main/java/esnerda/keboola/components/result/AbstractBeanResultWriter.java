@@ -71,6 +71,8 @@ public abstract class AbstractBeanResultWriter<T> implements IResultWriter<T>, C
 
 	@Override
 	public void close() throws IOException {
+		bw.flush();
+		writer.flush();
 		writer.close();
 		if (bw != null) {
 			bw.close();
