@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.apache.cxf.common.util.StringUtils;
+
 import com.iceportal.services.service.BrochureListItem;
 import com.iceportal.services.service.Categories;
 import com.iceportal.services.service.ICESubCategories;
@@ -42,7 +44,7 @@ public class Extractor {
 	private static IcePortalWsService iceWs;
 	private static IcePortalWsService iceWsWithouMtype;
 	private static KBCLogger log;
-	
+
 	/* writers */
 	private static IResultWriter<PropertyIDInfo> propResultWriter;
 	private static IResultWriter<PropertyVisuals> propVisualsWriter;
@@ -54,102 +56,115 @@ public class Extractor {
 	public static void main(String[] args) {
 		log = new DefaultLogger(Extractor.class);
 		List<ResultFileMetadata> results = new ArrayList<>();
-		
-			initEnv(args);
-			initWriters();
-			LocalDate now = LocalDate.now();
-			IpLastState lastState = null;
-			try {
-				lastState = Optional.ofNullable((IpLastState) handler.getStateFile()).orElse(new IpLastState());
-			} catch (KBCException e1) {
-				handleException(e1);
+
+		initEnv(args);
+		initWriters();
+		LocalDate now = LocalDate.now();
+		IpLastState lastState = null;
+		try {
+			lastState = Optional.ofNullable((IpLastState) handler.getStateFile()).orElse(new IpLastState());
+		} catch (KBCException e1) {
+			handleException(e1);
+		}
+		String lastRunParam = !StringUtils.isEmpty(config.getSinceString()) ? config.getSinceString()
+				: lastState.getLastRunString();
+
+		try {
+			List<PropertyIDInfo> propertiesRes = iceWs.getProperties(config.getPubStatus().toString(),
+					config.getModType().toString(), lastRunParam, config.getPropertyTypesString(), "0");
+
+			log.info("Retrieving properties changed since last run.");
+			/* collect result */
+			results.addAll(propResultWriter.writeAndRetrieveResuts(propertiesRes));
+			log.info("Retrieving property visuals..");
+			for (PropertyIDInfo prop : propertiesRes) {
+				tryGetPropertyVisuals(prop);
 			}
-			String lastRunParam = config.getSinceString() != null ? config.getSinceString() :  config.getSinceString();
-			
-			try {
-				List<PropertyIDInfo> propertiesRes = iceWs.getProperties(config.getPubStatus().toString(),
-						config.getModType().toString(), lastRunParam, config.getPropertyTypesString(), "0");
+			// collect results
+			log.info("Collectiong results...");
+			results.addAll(propVisualsWriter.closeAndRetrieveMetadata());
 
-				log.info("Retrieving properties changed since last run.");
-				/* collect result */
-				results.addAll(propResultWriter.writeAndRetrieveResuts(propertiesRes));
-				log.info("Retrieving property visuals..");
-				for (PropertyIDInfo prop : propertiesRes) {
-					PropertyVisuals visuals = iceWs.getVisuals(prop.getMappedID(), DEF_PROTOCOL, config.getLinkType(),
-							null);
-					propVisualsWriter.writeResult(visuals);
-					tryGetRoomTypes(prop);
-					
-				}
-				// collect results
-				log.info("Collectiong results...");
-				results.addAll(propVisualsWriter.closeAndRetrieveMetadata());
+			log.info("Getting propery types...");
+			results.addAll(propTypesWriter.writeAndRetrieveResuts(iceWs.getPropertyTypes()));
 
-				log.info("Getting propery types...");
-				results.addAll(propTypesWriter.writeAndRetrieveResuts(iceWs.getPropertyTypes()));
+			log.info("Getting languages...");
+			results.addAll(languagesWriter.writeAndRetrieveResuts(iceWsWithouMtype.getLanguages()));
 
-				log.info("Getting languages...");
-				results.addAll(languagesWriter.writeAndRetrieveResuts(iceWsWithouMtype.getLanguages()));
+			log.info("Getting categories...");
+			categoriesWriter.writeResult(iceWsWithouMtype.getCategories());
+			results.addAll(categoriesWriter.closeAndRetrieveMetadata());
 
-				log.info("Getting categories...");
-				categoriesWriter.writeResult(iceWsWithouMtype.getCategories());
-				results.addAll(categoriesWriter.closeAndRetrieveMetadata());
-				
-			} catch (Exception e) {
-				handleException(new KBCException("", "Extraction failed. " + e.getMessage(), "", 1));
-			}
-			
-			finalize(results, new IpLastState(now));
-		
-			log.info("Finished sucessfully.");
-			
-		
+		} catch (Exception e) {
+			handleException(new KBCException("", "Extraction failed. " + e.getMessage(), e, 1));
+		}
+
+		finalize(results, new IpLastState(now));
+
+		log.info("Finished sucessfully.");
+
 	}
 
-	private static void tryGetRoomTypes(PropertyIDInfo property) {		
+	private static void tryGetPropertyVisuals(PropertyIDInfo property) {
+		PropertyVisuals visuals;
 		try {
-			//why is Mtype failing?
-			propertRoomTypesWriter.writeAllResults(PropertyRoomTypeWrapper.Builder.build(property.getIceID(),
-					iceWsWithouMtype.getRoomTypesForProperty(property.getMappedID())));
+			visuals = iceWs.getVisuals(property.getMappedID(), DEF_PROTOCOL, config.getLinkType(), null);
+			propVisualsWriter.writeResult(visuals);
+			tryGetRoomTypes(property);
 		} catch (Exception e) {
-			log.warning("Failed to get property " + property.getIceID() + " room types. "+e.getMessage());
+			log.warning("Failed to get property " + property.getIceID() + " visuals. " + e.getMessage(), e);
 		}
 	}
 
-	private static void initEnv(String[] args){
+	private static void tryGetRoomTypes(PropertyIDInfo property) {
+		try {
+			// why is Mtype failing?
+			propertRoomTypesWriter.writeAllResults(PropertyRoomTypeWrapper.Builder.build(property.getIceID(),
+					iceWsWithouMtype.getRoomTypesForProperty(property.getMappedID())));
+		} catch (Exception e) {
+			log.warning("Failed to get property " + property.getIceID() + " room types. " + e.getMessage(), e);
+		}
+	}
+
+	private static void initEnv(String[] args) {
 		handler = initHandler(args, log);
 		config = (IcePortalConfigParameters) handler.getParameters();
 		try {
-			iceWs = new IcePortalWsService(log.getLogger(), new IceportalWsClient(new IceClientConfig(config.getUserName(), config.getPassword(), config.getUserMtype()),
-					log.getLogger(), config.isDebug()));
-			iceWsWithouMtype = new IcePortalWsService(log.getLogger(), new IceportalWsClient(new IceClientConfig(config.getUserName(), config.getPassword(), null), log.getLogger(), config.isDebug()));
-			
+			iceWs = new IcePortalWsService(log.getLogger(),
+					new IceportalWsClient(
+							new IceClientConfig(config.getUserName(), config.getPassword(), config.getUserMtype()),
+							log.getLogger(), config.isDebug()));
+			iceWsWithouMtype = new IcePortalWsService(log.getLogger(),
+					new IceportalWsClient(new IceClientConfig(config.getUserName(), config.getPassword(), null),
+							log.getLogger(), config.isDebug()));
+
 		} catch (Exception e) {
-			handleException(new KBCException("Failed to init web service!", e.getMessage(), e, 1));
-		}		
+			handleException(new KBCException("Failed to init web service!", e.getMessage(), e, 2));
+		}
 	}
 
-	private static void initWriters(){
+	private static void initWriters() {
 		try {
-			propResultWriter = new DefaultBeanResultWriter<>("property.csv", new String[]{"iceID"});
+			propResultWriter = new DefaultBeanResultWriter<>("property.csv", new String[] { "iceID" });
 			propResultWriter.initWriter(handler.getOutputTablesPath(), PropertyIDInfo.class);
 
 			propVisualsWriter = new PropertyVisualWriter();
 			propVisualsWriter.initWriter(handler.getOutputTablesPath(), PropertyVisuals.class);
 
-			propTypesWriter = new DefaultBeanResultWriter<BrochureListItem>("propertyTypes.csv", new String[]{"isoCode"});
+			propTypesWriter = new DefaultBeanResultWriter<BrochureListItem>("propertyTypes.csv",
+					new String[] { "isoCode" });
 			propTypesWriter.initWriter(handler.getOutputTablesPath(), BrochureListItem.class);
-			
-			languagesWriter = new DefaultBeanResultWriter<Item>("languages.csv", new String[]{"lcid"});
+
+			languagesWriter = new DefaultBeanResultWriter<Item>("languages.csv", new String[] { "lcid" });
 			languagesWriter.initWriter(handler.getOutputTablesPath(), Item.class);
-			
-			propertRoomTypesWriter = new DefaultBeanResultWriter<PropertyRoomTypeWrapper>("propertyRoomTypes.csv", new String[]{"propIceId", "roomTypeCode"});
+
+			propertRoomTypesWriter = new DefaultBeanResultWriter<PropertyRoomTypeWrapper>("propertyRoomTypes.csv",
+					new String[] { "propIceId", "roomTypeCode" });
 			propertRoomTypesWriter.initWriter(handler.getOutputTablesPath(), PropertyRoomTypeWrapper.class);
 
 			categoriesWriter = new CategoriesWriter();
-			categoriesWriter.initWriter(handler.getOutputTablesPath(),null);
+			categoriesWriter.initWriter(handler.getOutputTablesPath(), null);
 		} catch (Exception e) {
-			handleException(new KBCException("Failed to init writer!", e.getMessage(), e, 1));			
+			handleException(new KBCException("Failed to init writer!", e.getMessage(), e, 1));
 		}
 	}
 
@@ -159,7 +174,7 @@ public class Extractor {
 			handler = ConfigHandlerBuilder.create(IcePortalConfigParameters.class).hasInputTables(false)
 					.setStateFileType(IpLastState.class).build();
 			// process the configuration
-			handler.processConfigFile(args);			
+			handler.processConfigFile(args);
 		} catch (KBCException ex) {
 			log.log(ex);
 			System.exit(1);
@@ -189,8 +204,8 @@ public class Extractor {
 
 	private static void handleException(KBCException ex) {
 		log.log(ex);
-		if (ex.getSeverity()>0) {
-			System.exit(ex.getSeverity());
+		if (ex.getSeverity() > 2) {
+			System.exit(ex.getSeverity() - 1);
 		}
 	}
 

@@ -102,7 +102,7 @@ public class IcePortalWsService {
 		Holder<String> errorMessage = new Holder<>();
 		Holder<ArrayOfRoomType> roomTypes = new Holder<>();
 		wsClient.getRoomTypesForProperty(mappedID, result, errorMessage, roomTypes);
-		if (!errorMessage.value.equals("OK")) {
+		if (!errorMessage.value.equals("OK") && !errorMessage.value.equals("Room Types for requested brochure does not exist")) {
 			throw new Exception("Error sending getRoomTypesForProperty request. Message: " + errorMessage.value);
 		}
 		return roomTypes.value.getRoomType();
