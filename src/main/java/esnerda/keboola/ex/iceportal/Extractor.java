@@ -84,6 +84,7 @@ public class Extractor {
 			// collect results
 			log.info("Collectiong results...");
 			results.addAll(propVisualsWriter.closeAndRetrieveMetadata());
+			results.addAll(propertRoomTypesWriter.closeAndRetrieveMetadata());
 
 			log.info("Getting propery types...");
 			results.addAll(propTypesWriter.writeAndRetrieveResuts(iceWs.getPropertyTypes()));
