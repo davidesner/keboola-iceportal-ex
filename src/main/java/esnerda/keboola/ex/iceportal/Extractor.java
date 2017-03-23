@@ -72,7 +72,7 @@ public class Extractor {
 		try {
 			log.info("Retrieving properties changed since last run.");
 			List<PropertyIDInfo> propertiesRes = iceWs.getProperties(config.getPubStatus().toString(),
-					config.getModType().toString(), lastRunParam, config.getPropertyTypesString(), "0");
+					config.getModType().toString(), lastRunParam, config.getPropertyTypesString(), "1");
 
 			
 			/* collect result */
