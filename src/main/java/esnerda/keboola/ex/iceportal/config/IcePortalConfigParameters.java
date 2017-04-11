@@ -141,7 +141,7 @@ public class IcePortalConfigParameters extends IKBCParameters{
 		}
 
 		public static boolean isValid(String test) {
-			for (Dataset c : Dataset.values()) {
+			for (PublicationType c : PublicationType.values()) {
 				if (c.name().equals(test)) {
 					return true;
 				}
@@ -164,7 +164,7 @@ public class IcePortalConfigParameters extends IKBCParameters{
 		}
 
 		public static boolean isValid(String test) {
-			for (Dataset c : Dataset.values()) {
+			for (ModType c : ModType.values()) {
 				if (c.name().equals(test)) {
 					return true;
 				}
