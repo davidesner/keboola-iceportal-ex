@@ -9,6 +9,8 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Holder;
 
+import org.apache.cxf.clustering.FailoverFeature;
+import org.apache.cxf.clustering.RetryStrategy;
 import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.frontend.ClientProxy;
@@ -56,6 +58,7 @@ import esnerda.keboola.ex.iceportal.ws.interceptor.LoggingInterceptor;
  */
 public class IceportalWsClient implements ICEWebServiceSoap {
 
+	private static final int MAX_RETRIES = 5;
 	private static final String ICEPORTAL_NAMESPACE = "http://services.iceportal.com/service";
 
 	private final ICEAuthHeader iceAuthHeader;
@@ -88,16 +91,22 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 	@SuppressWarnings("rawtypes")
 	private void configureIceClient(Object authHeader, Class authHeaderType, boolean debug) throws JAXBException {
 		ICEWebService ss = new ICEWebService();
-		this.iceWsClient = ss.getICEWebServiceSoap12();
+		this.iceWsClient = ss.getICEWebServiceSoap12();		
 		List<Header> headers = new ArrayList<Header>();
 		// set up interceptors
 		Client cxfClient = ClientProxy.getClient(iceWsClient);
+		//set retry stragtegy
+        RetryStrategy retryStrategy = new RetryStrategy(); 
+        retryStrategy.setMaxNumberOfRetries(MAX_RETRIES); 
+        FailoverFeature failoverFeature = new FailoverFeature(); 
+        failoverFeature.setStrategy(retryStrategy); 
+        failoverFeature.initialize(cxfClient, cxfClient.getBus());
 		if (debug) {
 			cxfClient.getOutInterceptors().add(new LoggingInterceptor());
 			cxfClient.getInInterceptors().add(new LoggingInInterceptor());
-		}
+		}		
 		HTTPConduit http = (HTTPConduit) cxfClient.getConduit();
-
+		
 		HTTPClientPolicy httpClientPolicy = new HTTPClientPolicy();
 		httpClientPolicy.setConnectionTimeout(0);
 		httpClientPolicy.setReceiveTimeout(0);
