@@ -18,16 +18,16 @@ ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 # END maven
 
-MAINTAINER David Esner <esnerda@gmail.com>
+# set switch that enables correct JVM memory allocation in containers
+ENV JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+ENV MAVEN_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
 
+MAINTAINER David Esner <esnerda@gmail.com>
 ENV APP_VERSION 1.2.0
+
 RUN apk add --no-cache git
  WORKDIR /home
 RUN git clone https://github.com/davidesner/keboola-iceportal-ex.git ./  
-
-# set switch that enables correct JVM memory allocation in containers
-RUN export JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
-RUN export MAVEN_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
 
 RUN mvn compile
 

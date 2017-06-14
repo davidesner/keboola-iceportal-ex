@@ -15,7 +15,6 @@ import org.apache.cxf.common.util.StringUtils;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.headers.Header;
-import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
@@ -51,7 +50,8 @@ import com.iceportal.services.service.RoomTypeCodes;
 import com.iceportal.services.service.SearchBrchureInfoV2;
 import com.iceportal.services.service.SearchBrochureInfo;
 
-import esnerda.keboola.ex.iceportal.ws.interceptor.LoggingInterceptor;
+import esnerda.keboola.ex.iceportal.ws.interceptor.CustomLoggingInInterceptor;
+import esnerda.keboola.ex.iceportal.ws.interceptor.CustomLoggingOutInterceptor;
 
 /**
  * @author David Esner
@@ -70,6 +70,7 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 		if (!config.isValid()) {
 			throw new Exception("Both userName and password must be filled");
 		}
+		this.logger = logger;
 		if (StringUtils.isEmpty(config.getUserMtype())) {
 			this.iceAuthHeader = new ICEAuthHeader();
 			this.iceAuthHeader.setUsername(config.getUserName());
@@ -83,9 +84,7 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 			this.iceAuthHeaderWithMType.setUserMType(config.getUserMtype());
 			this.iceAuthHeader = null;
 			configureIceClient(iceAuthHeaderWithMType, ICEAuthHeaderWithMType.class, debug);
-		}
-		this.logger = logger;
-	
+		}	
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -102,8 +101,8 @@ public class IceportalWsClient implements ICEWebServiceSoap {
         failoverFeature.setStrategy(retryStrategy); 
         failoverFeature.initialize(cxfClient, cxfClient.getBus());
 		if (debug) {
-			cxfClient.getOutInterceptors().add(new LoggingInterceptor());
-			cxfClient.getInInterceptors().add(new LoggingInInterceptor());
+			cxfClient.getOutInterceptors().add(new CustomLoggingOutInterceptor(logger));
+			cxfClient.getInInterceptors().add(new CustomLoggingInInterceptor(logger));
 		}		
 		HTTPConduit http = (HTTPConduit) cxfClient.getConduit();
 		

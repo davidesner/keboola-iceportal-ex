@@ -4,6 +4,7 @@ package esnerda.keboola.ex.iceportal.ws.interceptor;
  * @author David Esner
  */
 import java.io.OutputStream;
+import java.time.Instant;
 
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
@@ -12,11 +13,15 @@ import org.apache.cxf.io.CachedOutputStream;
 import org.apache.cxf.io.CachedOutputStreamCallback;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.phase.Phase;
+import org.apache.logging.log4j.Logger;
 
-public class LoggingInterceptor extends LoggingOutInterceptor {
+public class CustomLoggingOutInterceptor extends LoggingOutInterceptor {
+	
+	private Logger log;
 
-	public LoggingInterceptor() {
+	public CustomLoggingOutInterceptor(Logger log) {
 		super(Phase.PRE_STREAM);
+		this.log = log;
 	}
 
 	@Override
@@ -35,11 +40,13 @@ public class LoggingInterceptor extends LoggingOutInterceptor {
 		public void onClose(CachedOutputStream cos) {
 			try {
 				StringBuilder builder = new StringBuilder();
-				cos.writeCacheTo(builder, limit);
-				// here comes my xml:
-				String soapXml = builder.toString();
+				builder.append("Logging outbound message: \n");
+				builder.append(Instant.now() + ": ");
+				cos.writeCacheTo(builder);
+				String soapXml = builder.toString();				
 				System.out.println(soapXml);
 			} catch (Exception e) {
+				log.error(e);
 			}
 		}
 	}
