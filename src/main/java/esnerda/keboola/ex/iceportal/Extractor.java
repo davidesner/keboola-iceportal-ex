@@ -66,8 +66,7 @@ public class Extractor {
 		} catch (KBCException e1) {
 			handleException(e1);
 		}
-		String lastRunParam = !StringUtils.isEmpty(config.getSinceString()) ? config.getSinceString()
-				: lastState.getLastRunString();
+		String lastRunParam = getLastRunParameter(lastState);
 
 		try {
 			log.info("Retrieving properties changed since last run.");
@@ -104,6 +103,11 @@ public class Extractor {
 
 		log.info("Finished sucessfully.");
 
+	}
+
+	private static String getLastRunParameter(IpLastState lastState) {
+		return !StringUtils.isEmpty(config.getSinceString()) ? config.getSinceString()
+				: lastState.getLastRunString();
 	}
 
 	private static void tryGetPropertyVisuals(PropertyIDInfo property) {
@@ -194,7 +198,9 @@ public class Extractor {
 		try {
 			saveResults(results);
 
-			handler.writeStateFile(thisState);
+			if (config.getSince() == null) {
+				handler.writeStateFile(thisState);
+			}
 		} catch (KBCException e) {
 			handleException(e);
 		}
