@@ -59,6 +59,7 @@ import esnerda.keboola.ex.iceportal.ws.interceptor.CustomLoggingOutInterceptor;
 public class IceportalWsClient implements ICEWebServiceSoap {
 
 	private static final int MAX_RETRIES = 5;
+	private static final long FAILOVER_DELAY = 10000L;
 	private static final String ICEPORTAL_NAMESPACE = "http://services.iceportal.com/service";
 
 	private final ICEAuthHeader iceAuthHeader;
@@ -96,7 +97,8 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 		Client cxfClient = ClientProxy.getClient(iceWsClient);
 		//set retry stragtegy
         RetryStrategy retryStrategy = new RetryStrategy(); 
-        retryStrategy.setMaxNumberOfRetries(MAX_RETRIES); 
+        retryStrategy.setMaxNumberOfRetries(MAX_RETRIES);
+        retryStrategy.setDelayBetweenRetries(FAILOVER_DELAY);
         FailoverFeature failoverFeature = new FailoverFeature(); 
         failoverFeature.setStrategy(retryStrategy); 
         failoverFeature.initialize(cxfClient, cxfClient.getBus());
