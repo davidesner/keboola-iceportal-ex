@@ -15,5 +15,7 @@ Component enables retrieving visual content data from Iceportal services.
 
 ## Usage
 Most common scenario is to leave all parameters set to default values.
+
+![Common config](/imgs/config.png)
  
 In this case, all available properties and corresponding visual data will be retrieved on the first run. Each consequent run, only properties that have changed since the last run will be retrieved. It is important to set the Storage upload mode to Incremental, otherwise all data from previous load will be overwritten in the output bucket.
