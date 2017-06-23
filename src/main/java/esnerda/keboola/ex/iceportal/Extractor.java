@@ -106,6 +106,9 @@ public class Extractor {
 	}
 
 	private static String getLastRunParameter(IpLastState lastState) {
+		if(config.getSince() == null) {
+			return null;
+		}
 		return !StringUtils.isEmpty(config.getSinceString()) ? config.getSinceString()
 				: lastState.getLastRunString();
 	}

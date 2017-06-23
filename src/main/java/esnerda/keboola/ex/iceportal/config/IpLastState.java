@@ -34,7 +34,7 @@ public void setLastRun(LocalDate lastRun) {
 
 @JsonIgnore
 public String getLastRunString() {
-	return lastRun.format(DateTimeFormatter.ISO_LOCAL_DATE);
+	return lastRun != null ? lastRun.format(DateTimeFormatter.ISO_LOCAL_DATE) : null;
 }
 
 
