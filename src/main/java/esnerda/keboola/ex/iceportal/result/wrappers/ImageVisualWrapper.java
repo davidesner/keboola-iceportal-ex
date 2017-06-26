@@ -52,12 +52,12 @@ public class ImageVisualWrapper {
 				this.mediaLinkDimHeight = iv.getMediaLink().getDimensions().getHeight();
 				this.mediaLinkDimWidth = iv.getMediaLink().getDimensions().getWidth();
 			}
-			if (iv.getDirectLinks() != null) {
-				this.directLinkUrl = iv.getDirectLinks().getUrl();
-				if (iv.getDirectLinks().getDimensions() != null) {
-					this.directLinkDimHeight = iv.getDirectLinks().getDimensions().getHeight();
-					this.directLinkDimWidth = iv.getDirectLinks().getDimensions().getWidth();
-				}
+		}
+		if (iv.getDirectLinks() != null) {
+			this.directLinkUrl = iv.getDirectLinks().getUrl();
+			if (iv.getDirectLinks().getDimensions() != null) {
+				this.directLinkDimHeight = iv.getDirectLinks().getDimensions().getHeight();
+				this.directLinkDimWidth = iv.getDirectLinks().getDimensions().getWidth();
 			}
 		}
 	}
