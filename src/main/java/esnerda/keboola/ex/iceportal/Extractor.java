@@ -25,6 +25,7 @@ import esnerda.keboola.components.result.IResultWriter;
 import esnerda.keboola.components.result.ResultFileMetadata;
 import esnerda.keboola.components.result.impl.DefaultBeanResultWriter;
 import esnerda.keboola.ex.iceportal.config.IcePortalConfigParameters;
+import esnerda.keboola.ex.iceportal.config.IcePortalConfigParameters.ModType;
 import esnerda.keboola.ex.iceportal.config.IpLastState;
 import esnerda.keboola.ex.iceportal.result.impl.CategoriesWriter;
 import esnerda.keboola.ex.iceportal.result.impl.PropertyVisualWriter;
@@ -70,9 +71,9 @@ public class Extractor {
 
 		try {
 			log.info("Retrieving properties changed since last run.");
-			List<PropertyIDInfo> propertiesRes = iceWs.getProperties(config.getPubStatus().toString(),
-					config.getModType().toString(), lastRunParam, config.getPropertyTypesString(), "1");
-
+			String modType = StringUtils.isEmpty(lastRunParam) ? config.getModType().toString() : String.valueOf(ModType.MODIFIED_SINCE.getCode());
+			List<PropertyIDInfo> propertiesRes = iceWs.getProperties(config.getPubStatus().toString(), modType,
+					lastRunParam, config.getPropertyTypesString(), "1");
 			
 			/* collect result */
 			results.addAll(propResultWriter.writeAndRetrieveResuts(propertiesRes));
@@ -106,9 +107,6 @@ public class Extractor {
 	}
 
 	private static String getLastRunParameter(IpLastState lastState) {
-		if(config.getSince() == null) {
-			return null;
-		}
 		return !StringUtils.isEmpty(config.getSinceString()) ? config.getSinceString()
 				: lastState.getLastRunString();
 	}
