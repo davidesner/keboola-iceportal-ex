@@ -169,9 +169,9 @@ public class ManifestFile {
 
 		public static Builder buildDefaultFromResult(ResultFileMetadata result, String destBucket, Boolean incremental) {			
         	Builder b = new Builder(result.getResFile().getName(), destBucket);
-			if (incremental) {
-				b.setPrimaryKey(result.getIdColums());
-			}
+			
+			b.setPrimaryKey(result.getIdColums());
+			
 			b.setIncrementalLoad(incremental);
         	return b;
         }
