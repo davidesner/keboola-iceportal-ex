@@ -44,9 +44,13 @@ import com.iceportal.services.service.ICEWebService;
 import com.iceportal.services.service.ICEWebServiceSoap;
 import com.iceportal.services.service.LookupMappedIDInfo;
 import com.iceportal.services.service.MappingInfo;
+import com.iceportal.services.service.PrecIceTagsList;
 import com.iceportal.services.service.PropertyInfoV1;
 import com.iceportal.services.service.PropertyVisuals;
+import com.iceportal.services.service.PropertyVisualsV2;
 import com.iceportal.services.service.RoomTypeCodes;
+import com.iceportal.services.service.RoomTypesWithDetails;
+import com.iceportal.services.service.RoomTypesWithDetailsV2;
 import com.iceportal.services.service.SearchBrchureInfoV2;
 import com.iceportal.services.service.SearchBrochureInfo;
 
@@ -334,6 +338,41 @@ public class IceportalWsClient implements ICEWebServiceSoap {
 			Holder<BrochureV1> brochure) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void getRoomTypesForPropertyV2(String mappedID, Holder<Integer> getRoomTypesForPropertyV2Result,
+			Holder<String> errorMessage, Holder<RoomTypesWithDetails> roomTypes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getImagesOfRoomTypeV2(String roomTypeCode, String mappedID, Holder<Integer> getImagesOfRoomTypeV2Result,
+			Holder<String> errorMessage, Holder<ArrayOfImage> images) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getPrecICETags(Holder<Integer> getPrecICETagsResult, Holder<String> errorMessage,
+			Holder<PrecIceTagsList> preIceTags) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getVisualsV2(String mappedID, String protocol, String linkType, String photoSize,
+			Holder<Integer> getVisualsV2Result, Holder<String> errorMessage, Holder<PropertyVisualsV2> property) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getRoomTypesForImageV2(int publicID, Holder<Integer> getRoomTypesForImageV2Result,
+			Holder<String> errorMessage, Holder<RoomTypesWithDetailsV2> roomTypes) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

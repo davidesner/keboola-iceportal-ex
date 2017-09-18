@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="HD360s" type="{http://services.iceportal.com/service}MediaContentVisuals" minOccurs="0"/&gt;
  *         &lt;element name="IFrame" type="{http://services.iceportal.com/service}iFrameInfo" minOccurs="0"/&gt;
  *         &lt;element name="VideoList" type="{http://services.iceportal.com/service}videosListVisuals" minOccurs="0"/&gt;
+ *         &lt;element name="VideoListV2" type="{http://services.iceportal.com/service}videosListVisualsV2" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlType;
     "pictures",
     "hd360S",
     "iFrame",
-    "videoList"
+    "videoList",
+    "videoListV2"
 })
 public class BrochureContentVisuals {
 
@@ -46,6 +48,8 @@ public class BrochureContentVisuals {
     protected IFrameInfo iFrame;
     @XmlElement(name = "VideoList")
     protected VideosListVisuals videoList;
+    @XmlElement(name = "VideoListV2")
+    protected VideosListVisualsV2 videoListV2;
 
     /**
      * Gets the value of the pictures property.
@@ -141,6 +145,30 @@ public class BrochureContentVisuals {
      */
     public void setVideoList(VideosListVisuals value) {
         this.videoList = value;
+    }
+
+    /**
+     * Gets the value of the videoListV2 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link VideosListVisualsV2 }
+     *     
+     */
+    public VideosListVisualsV2 getVideoListV2() {
+        return videoListV2;
+    }
+
+    /**
+     * Sets the value of the videoListV2 property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link VideosListVisualsV2 }
+     *     
+     */
+    public void setVideoListV2(VideosListVisualsV2 value) {
+        this.videoListV2 = value;
     }
 
 }

@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for VideoInfoVisuals complex type.
+ * <p>Java class for VideoInfoVisualsV2 complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="VideoInfoVisuals"&gt;
+ * &lt;complexType name="VideoInfoVisualsV2"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="mediaGalleryUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="_720p" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="_360p" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="RoomTypeCodes" type="{http://services.iceportal.com/service}roomTypeCodes" minOccurs="0"/&gt;
+ *         &lt;element name="RoomTypeCodes" type="{http://services.iceportal.com/service}RoomTypes" minOccurs="0"/&gt;
  *         &lt;element name="PrecIceTags" type="{http://services.iceportal.com/service}ImageTags" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "VideoInfoVisuals", propOrder = {
+@XmlType(name = "VideoInfoVisualsV2", propOrder = {
     "ordinal",
     "publicID",
     "thumbnailCaption",
@@ -56,7 +56,7 @@ import javax.xml.bind.annotation.XmlType;
     "roomTypeCodes",
     "precIceTags"
 })
-public class VideoInfoVisuals {
+public class VideoInfoVisualsV2 {
 
     @XmlElement(name = "Ordinal")
     protected String ordinal;
@@ -75,7 +75,7 @@ public class VideoInfoVisuals {
     @XmlElement(name = "_360p")
     protected String _360P;
     @XmlElement(name = "RoomTypeCodes")
-    protected RoomTypeCodes roomTypeCodes;
+    protected RoomTypes roomTypeCodes;
     @XmlElement(name = "PrecIceTags")
     protected ImageTags precIceTags;
 
@@ -372,10 +372,10 @@ public class VideoInfoVisuals {
      * 
      * @return
      *     possible object is
-     *     {@link RoomTypeCodes }
+     *     {@link RoomTypes }
      *     
      */
-    public RoomTypeCodes getRoomTypeCodes() {
+    public RoomTypes getRoomTypeCodes() {
         return roomTypeCodes;
     }
 
@@ -384,10 +384,10 @@ public class VideoInfoVisuals {
      * 
      * @param value
      *     allowed object is
-     *     {@link RoomTypeCodes }
+     *     {@link RoomTypes }
      *     
      */
-    public void setRoomTypeCodes(RoomTypeCodes value) {
+    public void setRoomTypeCodes(RoomTypes value) {
         this.roomTypeCodes = value;
     }
 

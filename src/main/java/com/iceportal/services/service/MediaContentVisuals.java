@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="propertyMapUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="Captions" type="{http://services.iceportal.com/service}ArrayOfCaptionForVisuals" minOccurs="0"/&gt;
  *         &lt;element name="Images" type="{http://services.iceportal.com/service}ArrayOfPropertyImageVisuals" minOccurs="0"/&gt;
+ *         &lt;element name="ImagesV2" type="{http://services.iceportal.com/service}ArrayOfPropertyImageVisualsV2" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlType;
     "mediaGalleryURL",
     "propertyMapUrl",
     "captions",
-    "images"
+    "images",
+    "imagesV2"
 })
 public class MediaContentVisuals {
 
@@ -44,6 +46,8 @@ public class MediaContentVisuals {
     protected ArrayOfCaptionForVisuals captions;
     @XmlElement(name = "Images")
     protected ArrayOfPropertyImageVisuals images;
+    @XmlElement(name = "ImagesV2")
+    protected ArrayOfPropertyImageVisualsV2 imagesV2;
 
     /**
      * Gets the value of the mediaGalleryURL property.
@@ -139,6 +143,30 @@ public class MediaContentVisuals {
      */
     public void setImages(ArrayOfPropertyImageVisuals value) {
         this.images = value;
+    }
+
+    /**
+     * Gets the value of the imagesV2 property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ArrayOfPropertyImageVisualsV2 }
+     *     
+     */
+    public ArrayOfPropertyImageVisualsV2 getImagesV2() {
+        return imagesV2;
+    }
+
+    /**
+     * Sets the value of the imagesV2 property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ArrayOfPropertyImageVisualsV2 }
+     *     
+     */
+    public void setImagesV2(ArrayOfPropertyImageVisualsV2 value) {
+        this.imagesV2 = value;
     }
 
 }

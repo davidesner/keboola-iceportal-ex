@@ -637,6 +637,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRoomTypesForPropertyV2 }
+     * 
+     */
+    public GetRoomTypesForPropertyV2 createGetRoomTypesForPropertyV2() {
+        return new GetRoomTypesForPropertyV2();
+    }
+
+    /**
+     * Create an instance of {@link GetRoomTypesForPropertyV2Response }
+     * 
+     */
+    public GetRoomTypesForPropertyV2Response createGetRoomTypesForPropertyV2Response() {
+        return new GetRoomTypesForPropertyV2Response();
+    }
+
+    /**
+     * Create an instance of {@link RoomTypesWithDetails }
+     * 
+     */
+    public RoomTypesWithDetails createRoomTypesWithDetails() {
+        return new RoomTypesWithDetails();
+    }
+
+    /**
      * Create an instance of {@link GetRoomTypesForImage }
      * 
      */
@@ -661,6 +685,54 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRoomTypesForImageV2 }
+     * 
+     */
+    public GetRoomTypesForImageV2 createGetRoomTypesForImageV2() {
+        return new GetRoomTypesForImageV2();
+    }
+
+    /**
+     * Create an instance of {@link GetRoomTypesForImageV2Response }
+     * 
+     */
+    public GetRoomTypesForImageV2Response createGetRoomTypesForImageV2Response() {
+        return new GetRoomTypesForImageV2Response();
+    }
+
+    /**
+     * Create an instance of {@link RoomTypesWithDetailsV2 }
+     * 
+     */
+    public RoomTypesWithDetailsV2 createRoomTypesWithDetailsV2() {
+        return new RoomTypesWithDetailsV2();
+    }
+
+    /**
+     * Create an instance of {@link GetImagesOfRoomTypeV2 }
+     * 
+     */
+    public GetImagesOfRoomTypeV2 createGetImagesOfRoomTypeV2() {
+        return new GetImagesOfRoomTypeV2();
+    }
+
+    /**
+     * Create an instance of {@link GetImagesOfRoomTypeV2Response }
+     * 
+     */
+    public GetImagesOfRoomTypeV2Response createGetImagesOfRoomTypeV2Response() {
+        return new GetImagesOfRoomTypeV2Response();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfImage }
+     * 
+     */
+    public ArrayOfImage createArrayOfImage() {
+        return new ArrayOfImage();
+    }
+
+    /**
      * Create an instance of {@link GetImagesOfRoomType }
      * 
      */
@@ -674,14 +746,6 @@ public class ObjectFactory {
      */
     public GetImagesOfRoomTypeResponse createGetImagesOfRoomTypeResponse() {
         return new GetImagesOfRoomTypeResponse();
-    }
-
-    /**
-     * Create an instance of {@link ArrayOfImage }
-     * 
-     */
-    public ArrayOfImage createArrayOfImage() {
-        return new ArrayOfImage();
     }
 
     /**
@@ -730,6 +794,54 @@ public class ObjectFactory {
      */
     public PropertyVisuals createPropertyVisuals() {
         return new PropertyVisuals();
+    }
+
+    /**
+     * Create an instance of {@link GetVisualsV2 }
+     * 
+     */
+    public GetVisualsV2 createGetVisualsV2() {
+        return new GetVisualsV2();
+    }
+
+    /**
+     * Create an instance of {@link GetVisualsV2Response }
+     * 
+     */
+    public GetVisualsV2Response createGetVisualsV2Response() {
+        return new GetVisualsV2Response();
+    }
+
+    /**
+     * Create an instance of {@link PropertyVisualsV2 }
+     * 
+     */
+    public PropertyVisualsV2 createPropertyVisualsV2() {
+        return new PropertyVisualsV2();
+    }
+
+    /**
+     * Create an instance of {@link GetPrecICETags }
+     * 
+     */
+    public GetPrecICETags createGetPrecICETags() {
+        return new GetPrecICETags();
+    }
+
+    /**
+     * Create an instance of {@link GetPrecICETagsResponse }
+     * 
+     */
+    public GetPrecICETagsResponse createGetPrecICETagsResponse() {
+        return new GetPrecICETagsResponse();
+    }
+
+    /**
+     * Create an instance of {@link PrecIceTagsList }
+     * 
+     */
+    public PrecIceTagsList createPrecIceTagsList() {
+        return new PrecIceTagsList();
     }
 
     /**
@@ -1301,6 +1413,38 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RoomTypeGroupWithDetails }
+     * 
+     */
+    public RoomTypeGroupWithDetails createRoomTypeGroupWithDetails() {
+        return new RoomTypeGroupWithDetails();
+    }
+
+    /**
+     * Create an instance of {@link RoomtypeCodesWithDetails }
+     * 
+     */
+    public RoomtypeCodesWithDetails createRoomtypeCodesWithDetails() {
+        return new RoomtypeCodesWithDetails();
+    }
+
+    /**
+     * Create an instance of {@link RoomtypeCodeDetails }
+     * 
+     */
+    public RoomtypeCodeDetails createRoomtypeCodeDetails() {
+        return new RoomtypeCodeDetails();
+    }
+
+    /**
+     * Create an instance of {@link RoomTypeGroupWithDetailsV2 }
+     * 
+     */
+    public RoomTypeGroupWithDetailsV2 createRoomTypeGroupWithDetailsV2() {
+        return new RoomTypeGroupWithDetailsV2();
+    }
+
+    /**
      * Create an instance of {@link Image }
      * 
      */
@@ -1429,6 +1573,54 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayOfPropertyImageVisualsV2 }
+     * 
+     */
+    public ArrayOfPropertyImageVisualsV2 createArrayOfPropertyImageVisualsV2() {
+        return new ArrayOfPropertyImageVisualsV2();
+    }
+
+    /**
+     * Create an instance of {@link PropertyImageVisualsV2 }
+     * 
+     */
+    public PropertyImageVisualsV2 createPropertyImageVisualsV2() {
+        return new PropertyImageVisualsV2();
+    }
+
+    /**
+     * Create an instance of {@link RoomTypes }
+     * 
+     */
+    public RoomTypes createRoomTypes() {
+        return new RoomTypes();
+    }
+
+    /**
+     * Create an instance of {@link RoomTypeGroup }
+     * 
+     */
+    public RoomTypeGroup createRoomTypeGroup() {
+        return new RoomTypeGroup();
+    }
+
+    /**
+     * Create an instance of {@link RoomtypeCode }
+     * 
+     */
+    public RoomtypeCode createRoomtypeCode() {
+        return new RoomtypeCode();
+    }
+
+    /**
+     * Create an instance of {@link QualityScore }
+     * 
+     */
+    public QualityScore createQualityScore() {
+        return new QualityScore();
+    }
+
+    /**
      * Create an instance of {@link VideosListVisuals }
      * 
      */
@@ -1450,6 +1642,30 @@ public class ObjectFactory {
      */
     public VideoInfoVisuals createVideoInfoVisuals() {
         return new VideoInfoVisuals();
+    }
+
+    /**
+     * Create an instance of {@link VideosListVisualsV2 }
+     * 
+     */
+    public VideosListVisualsV2 createVideosListVisualsV2() {
+        return new VideosListVisualsV2();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfVideoInfoVisualsV2 }
+     * 
+     */
+    public ArrayOfVideoInfoVisualsV2 createArrayOfVideoInfoVisualsV2() {
+        return new ArrayOfVideoInfoVisualsV2();
+    }
+
+    /**
+     * Create an instance of {@link VideoInfoVisualsV2 }
+     * 
+     */
+    public VideoInfoVisualsV2 createVideoInfoVisualsV2() {
+        return new VideoInfoVisualsV2();
     }
 
     /**
@@ -1490,6 +1706,22 @@ public class ObjectFactory {
      */
     public PDFFileVisuals createPDFFileVisuals() {
         return new PDFFileVisuals();
+    }
+
+    /**
+     * Create an instance of {@link BrochureInfoVisualsV2 }
+     * 
+     */
+    public BrochureInfoVisualsV2 createBrochureInfoVisualsV2() {
+        return new BrochureInfoVisualsV2();
+    }
+
+    /**
+     * Create an instance of {@link PrecIceTagsConteiner }
+     * 
+     */
+    public PrecIceTagsConteiner createPrecIceTagsConteiner() {
+        return new PrecIceTagsConteiner();
     }
 
     /**

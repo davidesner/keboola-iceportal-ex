@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for PropertyImageVisuals complex type.
+ * <p>Java class for PropertyImageVisualsV2 complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="PropertyImageVisuals"&gt;
+ * &lt;complexType name="PropertyImageVisualsV2"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
@@ -27,8 +27,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="mediaGalleryUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="fullSize" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/&gt;
  *         &lt;element name="modifiedDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="RoomTypeCodes" type="{http://services.iceportal.com/service}roomTypeCodes" minOccurs="0"/&gt;
+ *         &lt;element name="RoomTypeCodes" type="{http://services.iceportal.com/service}RoomTypes" minOccurs="0"/&gt;
  *         &lt;element name="PrecIceTags" type="{http://services.iceportal.com/service}ImageTags" minOccurs="0"/&gt;
+ *         &lt;element name="QualityScore" type="{http://services.iceportal.com/service}QualityScore" minOccurs="0"/&gt;
  *         &lt;element name="FileModifiedDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="FileHashCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="MetadataModifiedDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
@@ -41,7 +42,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "PropertyImageVisuals", propOrder = {
+@XmlType(name = "PropertyImageVisualsV2", propOrder = {
     "ordinal",
     "publicID",
     "thumbUrl",
@@ -54,11 +55,12 @@ import javax.xml.bind.annotation.XmlType;
     "modifiedDate",
     "roomTypeCodes",
     "precIceTags",
+    "qualityScore",
     "fileModifiedDate",
     "fileHashCode",
     "metadataModifiedDate"
 })
-public class PropertyImageVisuals {
+public class PropertyImageVisualsV2 {
 
     protected int ordinal;
     @XmlElement(name = "PublicID")
@@ -75,9 +77,11 @@ public class PropertyImageVisuals {
     protected byte[] fullSize;
     protected String modifiedDate;
     @XmlElement(name = "RoomTypeCodes")
-    protected RoomTypeCodes roomTypeCodes;
+    protected RoomTypes roomTypeCodes;
     @XmlElement(name = "PrecIceTags")
     protected ImageTags precIceTags;
+    @XmlElement(name = "QualityScore")
+    protected QualityScore qualityScore;
     @XmlElement(name = "FileModifiedDate")
     protected String fileModifiedDate;
     @XmlElement(name = "FileHashCode")
@@ -318,10 +322,10 @@ public class PropertyImageVisuals {
      * 
      * @return
      *     possible object is
-     *     {@link RoomTypeCodes }
+     *     {@link RoomTypes }
      *     
      */
-    public RoomTypeCodes getRoomTypeCodes() {
+    public RoomTypes getRoomTypeCodes() {
         return roomTypeCodes;
     }
 
@@ -330,10 +334,10 @@ public class PropertyImageVisuals {
      * 
      * @param value
      *     allowed object is
-     *     {@link RoomTypeCodes }
+     *     {@link RoomTypes }
      *     
      */
-    public void setRoomTypeCodes(RoomTypeCodes value) {
+    public void setRoomTypeCodes(RoomTypes value) {
         this.roomTypeCodes = value;
     }
 
@@ -359,6 +363,30 @@ public class PropertyImageVisuals {
      */
     public void setPrecIceTags(ImageTags value) {
         this.precIceTags = value;
+    }
+
+    /**
+     * Gets the value of the qualityScore property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link QualityScore }
+     *     
+     */
+    public QualityScore getQualityScore() {
+        return qualityScore;
+    }
+
+    /**
+     * Sets the value of the qualityScore property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link QualityScore }
+     *     
+     */
+    public void setQualityScore(QualityScore value) {
+        this.qualityScore = value;
     }
 
     /**

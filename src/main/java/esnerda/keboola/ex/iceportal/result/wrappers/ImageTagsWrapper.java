@@ -36,7 +36,7 @@ public class ImageTagsWrapper {
 			if (tcodes == null) {
 				return result;
 			}
-			tcodes.getTags()
+			tcodes.getTag()
 					.forEach(t -> result.add(new ImageTagsWrapper(photoPubId, t)));
 			return result;
 		}

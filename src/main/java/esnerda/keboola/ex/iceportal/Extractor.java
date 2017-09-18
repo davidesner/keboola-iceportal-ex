@@ -118,7 +118,7 @@ public class Extractor {
 			propVisualsWriter.writeResult(visuals);
 			tryGetRoomTypes(property);
 		} catch (Exception e) {
-			log.warning("Failed to get property " + property.getIceID() + " visuals. " + e.getMessage(), null);
+			log.warning("Failed to get property IceID: " + property.getIceID() + " MappedID: "+property.getMappedID()+" visuals. " + e.getMessage(), e);
 		}
 	}
 
@@ -128,7 +128,7 @@ public class Extractor {
 			propertRoomTypesWriter.writeAllResults(PropertyRoomTypeWrapper.Builder.build(property.getIceID(),
 					iceWsWithouMtype.getRoomTypesForProperty(property.getMappedID())));
 		} catch (Exception e) {
-			log.warning("Failed to get property " + property.getIceID() + " room types. " + e.getMessage(), e);
+			log.warning("Failed to get property IceID: " + property.getIceID() + " MappedID: "+property.getMappedID()+" room types. " + e.getMessage(), e);
 		}
 	}
 

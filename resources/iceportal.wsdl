@@ -1212,6 +1212,45 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="keyword" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetRoomTypesForPropertyV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomTypesForPropertyV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRoomTypesForPropertyV2Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomTypes" type="tns:RoomTypesWithDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RoomTypesWithDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomTypeGroup" type="tns:RoomTypeGroupWithDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomTypeGroupWithDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeGroupID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeCodes" type="tns:RoomtypeCodesWithDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomtypeCodesWithDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomtypeCodeDetail" type="tns:RoomtypeCodeDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomtypeCodeDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RoomtypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="roomTypeDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="keywords" type="tns:keyword" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="GetRoomTypesForImage">
         <s:complexType>
           <s:sequence>
@@ -1233,7 +1272,34 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="roomTypeCode" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:element name="GetImagesOfRoomType">
+      <s:element name="GetRoomTypesForImageV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="publicID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomTypesForImageV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRoomTypesForImageV2Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomTypes" type="tns:RoomTypesWithDetailsV2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RoomTypesWithDetailsV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomTypeGroup" type="tns:RoomTypeGroupWithDetailsV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomTypeGroupWithDetailsV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeGroupID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomtypeCodeDetail" type="tns:RoomtypeCodeDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetImagesOfRoomTypeV2">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="roomTypeCode" type="s:string" />
@@ -1241,10 +1307,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetImagesOfRoomTypeResponse">
+      <s:element name="GetImagesOfRoomTypeV2Response">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="GetImagesOfRoomTypeResult" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="GetImagesOfRoomTypeV2Result" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Images" type="tns:ArrayOfImage" />
           </s:sequence>
@@ -1275,6 +1341,23 @@
           <s:enumeration value="CustomContent" />
         </s:restriction>
       </s:simpleType>
+      <s:element name="GetImagesOfRoomType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="roomTypeCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetImagesOfRoomTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetImagesOfRoomTypeResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Images" type="tns:ArrayOfImage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetProperties">
         <s:complexType>
           <s:sequence>
@@ -1407,6 +1490,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="HD360s" type="tns:MediaContentVisuals" />
           <s:element minOccurs="0" maxOccurs="1" name="IFrame" type="tns:iFrameInfo" />
           <s:element minOccurs="0" maxOccurs="1" name="VideoList" type="tns:videosListVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="VideoListV2" type="tns:videosListVisualsV2" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="MediaContentVisuals">
@@ -1415,6 +1499,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="propertyMapUrl" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Captions" type="tns:ArrayOfCaptionForVisuals" />
           <s:element minOccurs="0" maxOccurs="1" name="Images" type="tns:ArrayOfPropertyImageVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImagesV2" type="tns:ArrayOfPropertyImageVisualsV2" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfCaptionForVisuals">
@@ -1462,6 +1547,9 @@
           <s:element minOccurs="0" maxOccurs="1" name="modifiedDate" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RoomTypeCodes" type="tns:roomTypeCodes" />
           <s:element minOccurs="0" maxOccurs="1" name="PrecIceTags" type="tns:ImageTags" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileModifiedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileHashCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetadataModifiedDate" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="DirectLinks">
@@ -1472,7 +1560,58 @@
       </s:complexType>
       <s:complexType name="ImageTags">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Tags" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Tag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MediaImageTag" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPropertyImageVisualsV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PropertyImageVisualsV2" nillable="true" type="tns:PropertyImageVisualsV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PropertyImageVisualsV2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ordinal" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThumbUrl" type="tns:thumbUrl" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumb" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSizeUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MediaLink" type="tns:mediaLink" />
+          <s:element minOccurs="0" maxOccurs="1" name="DirectLinks" type="tns:DirectLinks" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="fullSize" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="modifiedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeCodes" type="tns:RoomTypes" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrecIceTags" type="tns:ImageTags" />
+          <s:element minOccurs="0" maxOccurs="1" name="QualityScore" type="tns:QualityScore" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileModifiedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileHashCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MetadataModifiedDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomTypes">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomTypeGroup" type="tns:RoomTypeGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomTypeGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeGroupID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeCodes" type="tns:RoomtypeCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomtypeCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomtypeCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QualityScore">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PhotoOverallScore" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PhotoSizeScore" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PhotoCategoryScore" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PhotoRoomTypeScore" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PhotoTagScore" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="videosListVisuals">
@@ -1500,6 +1639,37 @@
           <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryUrl" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="_720p" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="_360p" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeCodes" type="tns:roomTypeCodes" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrecIceTags" type="tns:ImageTags" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="videosListVisualsV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Videos" type="tns:ArrayOfVideoInfoVisualsV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVideoInfoVisualsV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="VideoInfoVisualsV2" nillable="true" type="tns:VideoInfoVisualsV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VideoInfoVisualsV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ordinal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="thumbnailURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoCaption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videoURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="language" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="languageid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryUrl" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="_720p" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="_360p" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeCodes" type="tns:RoomTypes" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrecIceTags" type="tns:ImageTags" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="BrochureInformationVisuals">
@@ -1538,6 +1708,98 @@
           <s:element minOccurs="0" maxOccurs="1" name="pdfFileUrl" type="s:string" />
         </s:sequence>
         <s:attribute name="lcid" type="s:int" use="required" />
+      </s:complexType>
+      <s:element name="GetVisualsV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MappedID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="protocol" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LinkType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PhotoSize" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVisualsV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetVisualsV2Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Property" type="tns:PropertyVisualsV2" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PropertyVisualsV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Request" type="tns:BrochureRequest" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyInfo" type="tns:BrochureInfoVisualsV2" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrecICETags" type="tns:PrecICETags" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyDescription" type="tns:PropertyDescription" />
+          <s:element minOccurs="0" maxOccurs="1" name="AvailableContent" type="tns:availableContent" />
+          <s:element minOccurs="0" maxOccurs="1" name="MediaGallery" type="tns:BrochureContentVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="Information" type="tns:BrochureInformationVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="tns:BrochureLocationVisuals" />
+          <s:element minOccurs="0" maxOccurs="1" name="Resources" type="tns:BrochureResourcesVisuals" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrochureInfoVisualsV2">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="iceID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brochureID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="propertyType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="stateCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="countryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="longitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="photos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="videos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HD360s" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iFrame" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="map" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RatesReservations" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralInfo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PDFLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailLink" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="createdOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lastModifiedOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QualityScore" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mediaGalleryURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPrecICETags">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPrecICETagsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetPrecICETagsResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PreIceTags" type="tns:PrecIceTagsList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PrecIceTagsList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PreICETag" type="tns:PrecIceTagsConteiner" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PrecIceTagsConteiner">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TagId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NodeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentNodeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSelectable" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreIceTags" type="tns:ArrayOfItem" />
+        </s:sequence>
+        <s:attribute name="NodeId" type="s:int" use="required" />
       </s:complexType>
       <s:element name="SearchBrochureInfo" nillable="true" type="tns:SearchBrochureInfo" />
       <s:element name="SearchBrchureInfoV2" nillable="true" type="tns:SearchBrchureInfoV2" />
@@ -1774,6 +2036,15 @@
   <wsdl:message name="GetRoomTypesForPropertyICEAuthHeader">
     <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
   </wsdl:message>
+  <wsdl:message name="GetRoomTypesForPropertyV2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoomTypesForPropertyV2" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForPropertyV2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoomTypesForPropertyV2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForPropertyV2ICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
   <wsdl:message name="GetRoomTypesForImageSoapIn">
     <wsdl:part name="parameters" element="tns:GetRoomTypesForImage" />
   </wsdl:message>
@@ -1781,6 +2052,24 @@
     <wsdl:part name="parameters" element="tns:GetRoomTypesForImageResponse" />
   </wsdl:message>
   <wsdl:message name="GetRoomTypesForImageICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForImageV2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoomTypesForImageV2" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForImageV2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoomTypesForImageV2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomTypesForImageV2ICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetImagesOfRoomTypeV2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetImagesOfRoomTypeV2" />
+  </wsdl:message>
+  <wsdl:message name="GetImagesOfRoomTypeV2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetImagesOfRoomTypeV2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetImagesOfRoomTypeV2ICEAuthHeader">
     <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
   </wsdl:message>
   <wsdl:message name="GetImagesOfRoomTypeSoapIn">
@@ -1809,6 +2098,24 @@
   </wsdl:message>
   <wsdl:message name="GetVisualsICEAuthHeaderWithMType">
     <wsdl:part name="ICEAuthHeaderWithMType" element="tns:ICEAuthHeaderWithMType" />
+  </wsdl:message>
+  <wsdl:message name="GetVisualsV2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetVisualsV2" />
+  </wsdl:message>
+  <wsdl:message name="GetVisualsV2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetVisualsV2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetVisualsV2ICEAuthHeaderWithMType">
+    <wsdl:part name="ICEAuthHeaderWithMType" element="tns:ICEAuthHeaderWithMType" />
+  </wsdl:message>
+  <wsdl:message name="GetPrecICETagsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPrecICETags" />
+  </wsdl:message>
+  <wsdl:message name="GetPrecICETagsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPrecICETagsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPrecICETagsICEAuthHeader">
+    <wsdl:part name="ICEAuthHeader" element="tns:ICEAuthHeader" />
   </wsdl:message>
   <wsdl:message name="SearchBrochuresHttpGetIn">
     <wsdl:part name="DID" type="s:string" />
@@ -1982,10 +2289,25 @@
       <wsdl:input message="tns:GetRoomTypesForPropertySoapIn" />
       <wsdl:output message="tns:GetRoomTypesForPropertySoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForPropertyV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains Room Type Parameters associated with a property</wsdl:documentation>
+      <wsdl:input message="tns:GetRoomTypesForPropertyV2SoapIn" />
+      <wsdl:output message="tns:GetRoomTypesForPropertyV2SoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetRoomTypesForImage">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains Room Type Parameters associated with an image</wsdl:documentation>
       <wsdl:input message="tns:GetRoomTypesForImageSoapIn" />
       <wsdl:output message="tns:GetRoomTypesForImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForImageV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains Room Type Parameters associated with an image</wsdl:documentation>
+      <wsdl:input message="tns:GetRoomTypesForImageV2SoapIn" />
+      <wsdl:output message="tns:GetRoomTypesForImageV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImagesOfRoomTypeV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains publicId's of images for specified property with specified roomTypeCode </wsdl:documentation>
+      <wsdl:input message="tns:GetImagesOfRoomTypeV2SoapIn" />
+      <wsdl:output message="tns:GetImagesOfRoomTypeV2SoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetImagesOfRoomType">
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains publicId's of images for specified property with specified roomTypeCode </wsdl:documentation>
@@ -2001,6 +2323,16 @@
       <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure content for GetVisuals web service</wsdl:documentation>
       <wsdl:input message="tns:GetVisualsSoapIn" />
       <wsdl:output message="tns:GetVisualsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualsV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains brochure content for GetVisualsV2 web service</wsdl:documentation>
+      <wsdl:input message="tns:GetVisualsV2SoapIn" />
+      <wsdl:output message="tns:GetVisualsV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrecICETags">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Obtains PreIceTag for </wsdl:documentation>
+      <wsdl:input message="tns:GetPrecICETagsSoapIn" />
+      <wsdl:output message="tns:GetPrecICETagsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ICEWebServiceHttpGet">
@@ -2276,11 +2608,41 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForPropertyV2">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForPropertyV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRoomTypesForPropertyV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetRoomTypesForImage">
       <soap:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForImage" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:GetRoomTypesForImageICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForImageV2">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForImageV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRoomTypesForImageV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImagesOfRoomTypeV2">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetImagesOfRoomTypeV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetImagesOfRoomTypeV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -2311,6 +2673,26 @@
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:GetVisualsICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualsV2">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetVisualsV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetVisualsV2ICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrecICETags">
+      <soap:operation soapAction="http://services.iceportal.com/service/GetPrecICETags" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPrecICETagsICEAuthHeader" part="ICEAuthHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -2578,11 +2960,41 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForPropertyV2">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForPropertyV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRoomTypesForPropertyV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetRoomTypesForImage">
       <soap12:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForImage" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:GetRoomTypesForImageICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypesForImageV2">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetRoomTypesForImageV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRoomTypesForImageV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImagesOfRoomTypeV2">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetImagesOfRoomTypeV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetImagesOfRoomTypeV2ICEAuthHeader" part="ICEAuthHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
@@ -2613,6 +3025,26 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:GetVisualsICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVisualsV2">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetVisualsV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetVisualsV2ICEAuthHeaderWithMType" part="ICEAuthHeaderWithMType" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrecICETags">
+      <soap12:operation soapAction="http://services.iceportal.com/service/GetPrecICETags" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPrecICETagsICEAuthHeader" part="ICEAuthHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />

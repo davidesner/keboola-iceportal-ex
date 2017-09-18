@@ -27,7 +27,7 @@ ENV APP_VERSION 1.2.0
 
 RUN apk add --no-cache git
  WORKDIR /home
-RUN git clone --branch v1.0 https://github.com/davidesner/keboola-iceportal-ex.git ./  
+RUN git clone https://github.com/davidesner/keboola-iceportal-ex.git ./  
 
 RUN mvn compile
 

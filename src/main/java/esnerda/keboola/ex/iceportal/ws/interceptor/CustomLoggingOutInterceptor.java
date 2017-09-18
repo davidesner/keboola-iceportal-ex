@@ -58,7 +58,7 @@ public class CustomLoggingOutInterceptor extends LoggingOutInterceptor {
 				soapXml = "Logging outbound message: \n" + Instant.now() + ": " + soapXml;
 				log.info(soapXml);
 			} catch (Exception e) {
-				log.error(e);
+				log.error(e,e);
 			}
 		}
 
